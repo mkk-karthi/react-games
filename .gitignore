@@ -1,5 +1,6 @@
-tic-tac-toe/build/
-tic-tac-toe/node_modules/
+*/build
+*/node_modules
+*/coverage
 temp-deploy/
 
 deploy.sh
