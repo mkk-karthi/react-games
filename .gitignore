@@ -1,3 +1,5 @@
 tic-tac-toe/build/
 tic-tac-toe/node_modules/
+temp-deploy/
+
 deploy.sh
