@@ -29,8 +29,10 @@ function App() {
   useEffect(() => {
     const winner = checkWinner(boardData);
     if (winner !== null) {
-      setWinner(winner);
-      setGameOver(true);
+      setTimeout(() => {
+        setWinner(winner);
+        setGameOver(true);
+      }, 500);
     } else if (mode != 2 && tern === 1) {
       computerMove();
     }
@@ -227,7 +229,7 @@ function App() {
           </table>
         </div>
         <div>
-          <button onClick={() => !gameOver && setBoardData(initialData)}>reset</button>
+          <button onClick={() => !gameOver && restart()}>reset</button>
         </div>
       </div>
       {gameOver && (

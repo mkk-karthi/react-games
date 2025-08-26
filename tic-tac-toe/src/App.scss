@@ -40,20 +40,22 @@ body {
 }
 
 .board {
-  border-collapse: collapse;
   box-shadow: var(--background-1) 0 0 10px 5px;
   margin: 10px 0;
+  background: var(--forground);
 
   td {
     padding: 10px;
     cursor: pointer;
-    min-width: 40px;
-    min-height: 40px;
+    min-width: 50px;
+    min-height: 50px;
     display: inline-block;
+    background: var(--background);
+
     p {
       line-height: 1;
       margin: 0;
-      font-size: 40px;
+      font-size: 50px;
     }
   }
 }
@@ -61,6 +63,7 @@ body {
 .board,
 .board td {
   border: 2px solid var(--forground);
+  border-radius: 10px;
 }
 
 .title {
@@ -105,7 +108,7 @@ select {
   height: 100vh;
   overflow: hidden;
   align-items: center;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.8);
 
   p {
     font-size: 40px;
