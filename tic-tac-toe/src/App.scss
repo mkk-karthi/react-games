@@ -1,0 +1,132 @@
+:root {
+  --forground: rgba(255, 255, 255, 0.87);
+  --background: #282828;
+  --background-1: #414141;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--forground);
+  background-color: var(--background);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --forground: #282828;
+    --background: #ffffff;
+    --background-1: #d0d0d0;
+
+    color: var(--forground);
+    background-color: var(--background);
+  }
+}
+
+body {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.board {
+  border-collapse: collapse;
+  box-shadow: var(--background-1) 0 0 10px 5px;
+  margin: 10px 0;
+
+  td {
+    padding: 10px;
+    cursor: pointer;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-block;
+    p {
+      line-height: 1;
+      margin: 0;
+      font-size: 40px;
+    }
+  }
+}
+
+.board,
+.board td {
+  border: 2px solid var(--forground);
+}
+
+.title {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  padding: 10px 16px;
+  background-color: var(--background);
+  font-size: 20px;
+  transition: all 1s ease;
+  margin: 15px 5px;
+  box-shadow: var(--background-1) 0 0 10px 5px;
+  border: 1px solid var(--forground);
+  color: var(--forground);
+}
+
+button:hover {
+  transition: all 1s ease;
+  box-shadow: none;
+}
+
+select {
+  background: var(--background);
+  color: var(--forground);
+  font-size: 20px;
+  width: 180px;
+  border: 2px solid var(--forground);
+  margin-block: 10px;
+  padding: 5px 10px;
+}
+
+.winner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+
+  p {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-shadow: #000 0 0 15px;
+    color: #fff;
+  }
+}
+
+.confetti-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  .confetti-source {
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    bottom: 50;
+  }
+}
