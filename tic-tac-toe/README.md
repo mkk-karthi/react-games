@@ -61,8 +61,8 @@ npm run build
 ## 📸 Screenshots
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/screenshots/screenshoot-1.png" alt="Tic tac toe (screenshoot-1)"><br>
-<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/screenshots/screenshoot-2.png" alt="Tic tac toe (screenshoot-1)"><br>
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/screenshoot-1.png" alt="Tic tac toe (screenshoot-1)"><br>
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/screenshoot-2.png" alt="Tic tac toe (screenshoot-1)"><br>
 </p>
 
 ---
