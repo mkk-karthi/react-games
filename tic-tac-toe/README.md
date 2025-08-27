@@ -27,7 +27,7 @@ Play against your friends or challenge the computer with **Easy** and **Hard** m
 
 ```bash
 git clone https://github.com/mkk-karthi/react-games.git
-cd tic-tac-toe
+cd react-games/tic-tac-toe
 ```
 
 ### Install dependencies
