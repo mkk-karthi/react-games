@@ -58,7 +58,7 @@ npm run build
 ## 📸 Screenshots
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/rock-paper-scissors/public/Screenshoot.png" alt="Rock Paper Scissors (screenshoot)">
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/rock-paper-scissors/public/Screenshot.png" alt="Rock Paper Scissors (screenshot)">
 </p>
 (Add screenshots or demo GIF here)
 
