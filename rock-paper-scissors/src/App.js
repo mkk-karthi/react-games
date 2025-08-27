@@ -20,7 +20,7 @@ function App() {
   const [lastWinner, setLastWinner] = useState(0);
   const [winner, setWinner] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const maxScore = 3;
+  const maxScore = 10;
 
   useEffect(() => {
     if (teamA.score == maxScore || teamB.score == maxScore) {
@@ -51,7 +51,7 @@ function App() {
 
     // avoid continue draws
     if (randomPick == pick && teamA.picked == teamB.picked && teamA.picked > 0) {
-      handleClick();
+      handleClick(pick);
       return;
     }
 
