@@ -20,7 +20,7 @@ function App() {
   const [lastWinner, setLastWinner] = useState(0);
   const [winner, setWinner] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const maxScore = 10;
+  const maxScore = 3;
 
   useEffect(() => {
     if (teamA.score == maxScore || teamB.score == maxScore) {
