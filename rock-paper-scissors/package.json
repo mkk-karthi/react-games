@@ -1,5 +1,5 @@
 {
-  "name": "games",
+  "name": "rock-paper-scissors",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,5 +35,6 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"
-  }
+  },
+  "homepage": "https://mkk-karthi.github.io/react-games/rock-paper-scissors"
 }
