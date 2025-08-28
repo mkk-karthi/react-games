@@ -1,31 +1,34 @@
 # ✊✋✌️ Rock Paper Scissors Game
 
 A fun **Rock Paper Scissors** game built with **React** and styled using **Tailwind CSS**.  
-Play and enjoy the classic hand game in your browser! 🎮  
+Play and enjoy the classic hand game in your browser! 🎮
 
 ---
 
 ## 🚀 Features
-- 🎲 **Random Computer Play** – Challenge the computer.  
-- 🎨 **Responsive UI** – Built with Tailwind CSS.  
-- ⚡ **Fast & Interactive** – React-based gameplay.  
+
+- 🎲 **Random Computer Play** - Challenge the computer.
+- 🎨 **Responsive UI** - Built with Tailwind CSS.
+- ⚡ **Fast & Interactive** - React-based gameplay.
 
 ---
 
 ## 🛠️ Tech Stack
-- **React.js** – Frontend library  
-- **Tailwind CSS** – Styling framework  
-- **JavaScript (ES6+)**  
+
+- **React.js** - Frontend library
+- **Tailwind CSS** - Styling framework
+- **JavaScript (ES6+)**
 
 ---
 
 ## 📂 Project Setup
 
 ### Clone the repository
+
 ```bash
 git clone https://github.com/mkk-karthi/react-games.git
 cd react-games/rock-paper-scissors
-````
+```
 
 ### Install dependencies
 
@@ -60,13 +63,20 @@ npm run build
 <p align="center">
 <img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/rock-paper-scissors/public/Screenshot.png" alt="Rock Paper Scissors (screenshot)">
 </p>
-(Add screenshots or demo GIF here)
 
 ---
 
 ## 📝 Future Improvements
 
-* Add **scoreboard tracking**.
-* Add **multiplayer mode**.
-* Add **difficulty levels** for computer.
-* Improve **animations & sounds**.
+- Add **scoreboard tracking**.
+- Add **multiplayer mode**.
+- Add **difficulty levels** for computer.
+- Improve **animations & sounds**.
+
+---
+
+## 👨‍💻 Created By
+
+**Karthikeyan M**
+[GitHub](https://github.com/mkk-karthi) • [LinkedIn](https://www.linkedin.com/in/karthikeyan-developer-mkk)
+

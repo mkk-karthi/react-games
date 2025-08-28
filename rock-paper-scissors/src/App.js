@@ -101,7 +101,7 @@ function App() {
           <Card text="Your score" score={teamA.score} />
           <Card text="Opponent score" score={teamB.score} />
         </div>
-        <div className="h-32 my-2 flex justify-evenly flex-row sm:flex-row">
+        <div className="h-20 sm:h-32 my-2 flex justify-evenly flex-row sm:flex-row">
           <div>
             {teamA.picked ? (
               <p className="text-gray-900 dark:text-white text-sm text-center">You</p>
