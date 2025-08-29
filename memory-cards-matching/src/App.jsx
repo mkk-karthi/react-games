@@ -1,39 +1,35 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import "./App.css";
 import TitleBar from "./componets/TitleBar";
 import SideBar from "./componets/SideBar";
+import useTimer from "./hooks/useTimer";
+
+import { MuteIcon } from "./componets/MuteIcon";
+import { UnMuteIcon } from "./componets/UnMuteIcon";
+
+import successSound from "./assets/success.mp3";
+import swooshSound from "./assets/swoosh.mp3";
+import levelUpSound from "./assets/level-up.mp3";
 
 function App() {
-  const [score, setScore] = useState(0);
-  const [time, setTime] = useState("00:00:00");
-  const [load, setLoad] = useState(false);
+  const [timer, setTimer, clearTimer, resetTimer] = useTimer();
   const [cards, setCards] = useState([]);
+  const [load, setLoad] = useState(false);
+  const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const interval = useRef(null);
+  const [muted, setMuted] = useState(false);
+
+  const successAudio = new Audio(successSound);
+  const swooshAudio = new Audio(swooshSound);
+  const LevelUpAudio = new Audio(levelUpSound);
 
   useEffect(() => {
     const content = Array.from({ length: (noCols * noRows) / 2 }, (_, i) => i);
     dynamicCardGenerator(content);
 
-    const curTime = Date.now();
-    const curInterval = setInterval(() => getTime(curTime), 1000);
-    interval.current = curInterval;
-    return () => clearInterval(interval.current);
+    setTimer();
+    return () => clearTimer();
   }, []);
-
-  // running time
-  const getTime = (time) => {
-    let total = Date.now() - time;
-    let sec = Math.floor((total / 1000) % 60);
-    let min = Math.floor((total / 1000 / 60) % 60);
-    let hrs = Math.floor((total / (1000 * 60 * 60)) % 24);
-
-    sec = sec > 9 ? sec : `0${sec}`;
-    min = min > 9 ? min : `0${min}`;
-    hrs = hrs > 9 ? hrs : `0${hrs}`;
-
-    setTime(`${hrs}:${min}:${sec}`);
-  };
 
   // generate dynamic card
   const noCols = 4;
@@ -66,6 +62,7 @@ function App() {
 
   const handleOpen = (row, col) => {
     if (!load) {
+      if (!muted) swooshAudio.play();
       setLoad(true);
       const tempCards = [...cards];
       tempCards[row][col].revealed = true;
@@ -129,15 +126,17 @@ function App() {
     // check all cards are matched
     let matchedCards = newCards.flat().filter((r) => r.matched);
     if (matchedCards.length == newCards.flat().length) {
-      clearInterval(interval.current);
+      if (!muted) successAudio.play();
+      clearTimer();
       setTimeout(() => setGameOver(true), 500);
+    } else if (type == "matched") {
+      if (!muted) LevelUpAudio.play();
     }
   };
 
   const reset = () => {
     setGameOver(false);
     setLoad(false);
-    setTime("00:00:00");
     setScore(0);
     setCards((card) =>
       card.map((r) =>
@@ -156,16 +155,23 @@ function App() {
       const content = Array.from({ length: (noCols * noRows) / 2 }, (_, i) => i);
       dynamicCardGenerator(content);
 
-      clearInterval(interval.current);
-      const curTime = Date.now();
-      const curInterval = setInterval(() => getTime(curTime), 1000);
-      interval.current = curInterval;
+      resetTimer();
     }, 300);
   };
 
   return (
     <>
-      <div className="p-4 h-screen flex justify-center place-items-center flex-col bg-blue-200">
+      <div className="relative p-4 h-screen flex justify-center place-items-center flex-col bg-blue-200">
+        <div
+          className="absolute top-2 right-2 sm:top-10 sm:right-10 bg-gradient-to-b from-blue-600 to-blue-800 rounded-md p-2 cursor-pointer"
+          onClick={() => setMuted(!muted)}
+        >
+          {muted ? (
+            <MuteIcon className="w-4 sm:w-8 h-auto fill-white" />
+          ) : (
+            <UnMuteIcon className="w-4 sm:w-8 h-auto fill-white" />
+          )}
+        </div>
         <TitleBar title="Memory: Cards Matching" />
         <div className="flex my-2 flex-col-reverse sm:flex-row">
           <div className="relative">
@@ -227,17 +233,8 @@ function App() {
               ""
             )}
           </div>
-          <SideBar time={time} score={score} reset={reset} gameOver={gameOver} />
+          <SideBar time={timer} score={score} reset={reset} gameOver={gameOver} />
         </div>
-        {/* {gameOver ? (
-          <div className="absolute inset-[0]">
-            <div className="absolute inset-x-[50%] bottom-[10]">
-              <ConfettiExplosion {...confettiProps} />
-            </div>
-          </div>
-        ) : (
-          ""
-        )} */}
       </div>
     </>
   );
