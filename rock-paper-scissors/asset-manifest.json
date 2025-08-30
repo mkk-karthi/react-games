@@ -1,18 +1,23 @@
 {
   "files": {
-    "main.css": "/react-games/rock-paper-scissors/static/css/main.e57ee5ce.css",
-    "main.js": "/react-games/rock-paper-scissors/static/js/main.9ddeb3b7.js",
+    "main.css": "/react-games/rock-paper-scissors/static/css/main.fa98b4c9.css",
+    "main.js": "/react-games/rock-paper-scissors/static/js/main.09bc97f4.js",
     "static/js/453.943ae0a4.chunk.js": "/react-games/rock-paper-scissors/static/js/453.943ae0a4.chunk.js",
+    "static/media/success.mp3": "/react-games/rock-paper-scissors/static/media/success.fd2c2fea27379cbc44da.mp3",
+    "static/media/fail.mp3": "/react-games/rock-paper-scissors/static/media/fail.9633cf62a3b34193e0c6.mp3",
     "static/media/rock.svg": "/react-games/rock-paper-scissors/static/media/rock.5747f2aaf9336d365d1f0d1733cd7e46.svg",
+    "static/media/pop-sound.mp3": "/react-games/rock-paper-scissors/static/media/pop-sound.6568d83a04dafec88749.mp3",
     "static/media/scissor.svg": "/react-games/rock-paper-scissors/static/media/scissor.34c22a78eaaaa7fb1f36a6c24b5f5386.svg",
     "static/media/paper.svg": "/react-games/rock-paper-scissors/static/media/paper.314832d88955add6caad9e6dfbd26c6f.svg",
     "index.html": "/react-games/rock-paper-scissors/index.html",
-    "main.e57ee5ce.css.map": "/react-games/rock-paper-scissors/static/css/main.e57ee5ce.css.map",
-    "main.9ddeb3b7.js.map": "/react-games/rock-paper-scissors/static/js/main.9ddeb3b7.js.map",
+    "static/media/audio.svg": "/react-games/rock-paper-scissors/static/media/audio.04785d311a6a824d030dca7ef9848529.svg",
+    "static/media/audio-off.svg": "/react-games/rock-paper-scissors/static/media/audio-off.817ace358a5a4f325be480fda7e33148.svg",
+    "main.fa98b4c9.css.map": "/react-games/rock-paper-scissors/static/css/main.fa98b4c9.css.map",
+    "main.09bc97f4.js.map": "/react-games/rock-paper-scissors/static/js/main.09bc97f4.js.map",
     "453.943ae0a4.chunk.js.map": "/react-games/rock-paper-scissors/static/js/453.943ae0a4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e57ee5ce.css",
-    "static/js/main.9ddeb3b7.js"
+    "static/css/main.fa98b4c9.css",
+    "static/js/main.09bc97f4.js"
   ]
 }
