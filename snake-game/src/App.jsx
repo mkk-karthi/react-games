@@ -168,7 +168,7 @@ function App() {
         {/* Board */}
         <div className="relative text-center">
           <div
-            className={`bg-green-200 border-8 border-red-600 ${
+            className={`bg-green-200 border-8 border-gray-800 ${
               gameOver && "before:z-10 before:bg-[rgba(0,0,0,0.5)] before:absolute before:inset-0"
             }`}
           >
