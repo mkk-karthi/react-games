@@ -18,6 +18,8 @@ function App() {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [muted, setMuted] = useState(false);
+  const noCols = 4;
+  const noRows = 4;
 
   const successAudio = new Audio(successSound);
   const swooshAudio = new Audio(swooshSound);
@@ -32,8 +34,6 @@ function App() {
   }, []);
 
   // generate dynamic card
-  const noCols = 4;
-  const noRows = 4;
   const dynamicCardGenerator = useCallback((content) => {
     const initialData = [...Array(noRows).keys()].map(() => [...Array(noCols).fill(null)]);
     const tempContent = content.map((i) => {

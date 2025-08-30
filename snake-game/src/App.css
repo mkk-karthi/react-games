@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.popup {
+  animation: popup 1s ease-out;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(85%);
+  }
+  50% {
+    transform: scale(110%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
