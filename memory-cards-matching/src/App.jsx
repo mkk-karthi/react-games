@@ -62,12 +62,14 @@ function App() {
 
   const handleOpen = (row, col) => {
     if (!load) {
-      if (!muted) swooshAudio.play();
-      setLoad(true);
       const tempCards = [...cards];
-      tempCards[row][col].revealed = true;
-      setCards(tempCards);
-      checkMach();
+      if (tempCards[row][col].matched == false) {
+        setLoad(true);
+        if (!muted && tempCards[row][col].revealed == false) swooshAudio.play();
+        tempCards[row][col].revealed = true;
+        setCards(tempCards);
+        checkMach();
+      }
     }
   };
 
@@ -161,7 +163,7 @@ function App() {
 
   return (
     <>
-      <div className="relative p-4 h-screen flex justify-center place-items-center flex-col bg-blue-200">
+      <div className="relative p-4 h-screen flex justify-center place-items-center flex-col bg-blue-100">
         <div
           className="absolute top-2 right-2 sm:top-10 sm:right-10 bg-gradient-to-b from-blue-600 to-blue-800 rounded-md p-2 cursor-pointer"
           onClick={() => setMuted(!muted)}
@@ -200,7 +202,7 @@ function App() {
                           <div className="absolute size-full inset-0 flex justify-center place-items-center rounded-lg bg-gradient-to-b from-blue-600 to-blue-800 [backface-visibility:hidden]">
                             <span className="text-3xl font-bold text-white">?</span>
                           </div>
-                          <div className="absolute size-full inset-0 flex justify-center place-items-center rounded-lg bg-white inset-shadow-[0_0_10px] inset-shadow-blue-900 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                          <div className="absolute size-full inset-0 flex justify-center place-items-center rounded-lg bg-white inset-shadow-[0_0_10px] inset-shadow-blue-800 [backface-visibility:hidden] [transform:rotateY(180deg)]">
                             <span
                               className={`text-3xl font-bold text-blue-900 confetti ${
                                 col.matched && "animate"
