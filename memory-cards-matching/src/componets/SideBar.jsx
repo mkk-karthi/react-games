@@ -3,11 +3,11 @@ function SideBar(props) {
     <div className="p-2">
       <div className="text-xl text-blue-900 border-2 border-blue-900 rounded-md m-2 p-2 text-center">
         <p className="font-bold">Time:</p>
-        <p className="">{props.time}</p>
+        <p className="min-w-[100px]">{props.time}</p>
       </div>
       <div className="text-xl text-blue-900 border-2 border-blue-900 rounded-md m-2 p-2 text-center">
         <p className="font-bold">Score:</p>
-        <p className="">{props.score}</p>
+        <p className="min-w-[100px]">{props.score}</p>
       </div>
       {!props.gameOver ? (
         <div className="p-2">
