@@ -23,7 +23,7 @@ A simple and fun memory game built using **React** and styled with **Tailwind CS
 ## 📸 Screenshot
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/memory-cards-matching/public/Screenshot.png" alt="Memory - React Games (screenshot)">
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/memory-cards-matching/public/Screenshot.png" alt="Memory Game - React Games (screenshot)">
 </p>
 
 ---
