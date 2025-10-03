@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { useEffect } from "react";
-import { useRef } from "react";
 import Button from "./components/Button";
 import {
   DownArrow,
