@@ -254,6 +254,15 @@ function App() {
             )}
           </div>
         </div>
+
+        <div className="text-green-900 border-2 border-green-900 rounded-md p-2 mt-3">
+          <p className="font-bold text-2xl">How to Play</p>
+          <ul className="text-sm list-disc my-1 pl-8">
+            <li>Use the arrow keys to move the snake.</li>
+            <li>Eat the food to grow longer.</li>
+            <li>Avoid hitting the walls or yourself - or the game ends!</li>
+          </ul>
+        </div>
       </div>
     </>
   );

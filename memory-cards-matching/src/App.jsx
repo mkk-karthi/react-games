@@ -163,7 +163,7 @@ function App() {
 
   return (
     <>
-      <div className="relative p-4 h-screen flex justify-center place-items-center flex-col bg-blue-100">
+      <div className="relative p-4 min-h-screen flex justify-center place-items-center flex-col bg-blue-100">
         <div
           className="absolute top-2 right-2 sm:top-10 sm:right-10 bg-gradient-to-b from-blue-600 to-blue-800 rounded-md p-2 cursor-pointer"
           onClick={() => setMuted(!muted)}
@@ -236,6 +236,14 @@ function App() {
             )}
           </div>
           <SideBar time={timer} score={score} reset={reset} gameOver={gameOver} />
+        </div>
+        <div className="text-blue-900 border-2 border-blue-900 rounded-md p-2 mt-3">
+          <p className="font-bold text-2xl">How to Play</p>
+          <ul className="text-sm list-disc my-1 pl-8">
+            <li>Shuffle the cards and place them face down.</li>
+            <li>Flip two cards at a time to find matching pairs.</li>
+            <li>Keep going until you match all the pairs</li>
+          </ul>
         </div>
       </div>
     </>

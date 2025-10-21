@@ -231,6 +231,17 @@ function App() {
         <div>
           <button onClick={() => !gameOver && restart()}>reset</button>
         </div>
+        <div className="tips">
+          <p>How to Play</p>
+          <ul>
+            <li>2 players - one is X, the other is O.</li>
+            <li>Players take turns to place one mark (X or O) in an empty box.</li>
+            <li>
+              First to make a straight line of 3 marks (horizontal, vertical, or diagonal) wins.
+            </li>
+            <li>If all 9 boxes are filled and no one has 3 in a row, it's a draw (nobody wins).</li>
+          </ul>
+        </div>
       </div>
       {gameOver && (
         <>

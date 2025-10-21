@@ -106,7 +106,7 @@ function App() {
 
   return (
     <>
-      <div className="relative p-4 h-screen flex justify-center place-items-center flex-col">
+      <div className="relative p-4 min-h-screen flex justify-center place-items-center flex-col">
         <div className="absolute top-2 right-2 sm:top-10 sm:right-10">
           {muted ? (
             <Button clickHandle={() => setMuted(!muted)}>
@@ -126,8 +126,14 @@ function App() {
         </p>
 
         <div className="flex justify-evenly flex-col sm:flex-row">
-          <Card text="Your score" score={teamA.score} />
-          <Card text="Opponent score" score={teamB.score} />
+          <Card width="250px">
+            Your score
+            <p>{teamA.score}</p>
+          </Card>
+          <Card width="250px">
+            Opponent score
+            <p>{teamB.score}</p>
+          </Card>
         </div>
         <div className="h-20 sm:h-32 my-2 flex justify-evenly flex-row sm:flex-row">
           <div>
@@ -169,6 +175,22 @@ function App() {
           </Button>
         </div>
         <p className="text-lg text-gray-900 dark:text-white text-center mt-3">Tack your pick</p>
+
+        <Card>
+          <div className="text-left">
+            <p className="text-xl">How to Play</p>
+            <ul className="font-normal text-sm list-disc my-1 pl-8">
+              <li>Both players show one sign (Rock, Paper, Scissor) at the same time.</li>
+            </ul>
+            <p className="text-xl">Who Wins?</p>
+            <ul className="font-normal text-sm list-disc my-1 pl-8">
+              <li>Rock beats Scissors (rock breaks scissors)</li>
+              <li>Paper beats Rock (paper covers rock)</li>
+              <li>Scissors beat Paper (scissors cut paper)</li>
+              <li>Same sign = Draw (no one wins)</li>
+            </ul>
+          </div>
+        </Card>
       </div>
 
       {gameOver && (

@@ -133,3 +133,17 @@ select {
     bottom: 50;
   }
 }
+
+.tips {
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  text-align: left;
+  margin: 5px 10px;
+
+  p {
+    font-weight: bold;
+    font-size: 20px;
+    margin-block: 10px;
+  }
+}
