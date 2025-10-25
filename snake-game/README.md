@@ -70,15 +70,6 @@ npm run build
 
 ---
 
-## 📝 Future Improvements
-
-- Add **difficulty levels** (Easy, Medium, Hard).
-- Add **sound effects & animations**.
-- Add **Leaderboard / High Score persistence**.
-- Mobile-friendly controls & gestures.
-
----
-
 ## 👨‍💻 Created By
 
 **Karthikeyan M**

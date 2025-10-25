@@ -13,14 +13,16 @@ import {
 
 function App() {
   // set ground
-  const groundWidth = 30;
-  const groundHeight = 30;
+  const groundWidth = 40;
+  const groundHeight = 40;
   const ground = [...Array(groundHeight).keys()].map(() => [...Array(groundWidth)]);
+  const StoreKey = "snake.score";
 
   const [snake, setSnake] = useState([]);
   const [direction, setDirection] = useState(4);
   const [food, setFood] = useState([]);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(localStorage.getItem(StoreKey) || 0);
   const [gameOver, setGameOver] = useState(false);
   const [isActive, setActive] = useState(false);
 
@@ -47,6 +49,13 @@ function App() {
   useEffect(() => {
     gameOverRef.current = gameOver;
   }, [gameOver]);
+
+  useEffect(() => {
+    if (localStorage.getItem(StoreKey) < score) {
+      localStorage.setItem(StoreKey, score);
+      setBestScore(score);
+    }
+  }, [score]);
 
   useEffect(() => {
     generateFood();
@@ -156,13 +165,16 @@ function App() {
 
   return (
     <>
-      <div className="p-4 min-h-screen flex place-items-center flex-col bg-green-100">
+      <div className="p-4 min-h-screen flex place-items-center flex-col bg-green-200">
         <p className="text-3xl font-bold text-green-900 capitalize text-center my-2">Snake Game</p>
 
         {/* Score */}
         <div className="flex justify-between my-2">
-          <div className="fs-xl border-2 rounded-xl px-4 py-2 mx-1 text-green-900 border-green-900">
+          <div className="fs-2xl border-2 rounded-xl px-4 py-2 mx-1 bg-green-200 text-green border-green">
             Score: {score}
+          </div>
+          <div className="fs-2xl border-2 rounded-xl px-4 py-2 mx-1 bg-green-200 text-green border-green">
+            Best: {bestScore}
           </div>
         </div>
 
@@ -170,7 +182,7 @@ function App() {
         <div className="flex justify-center place-items-center flex-col sm:flex-row">
           <div className="relative text-center m-2">
             <div
-              className={`bg-green-200 border-8 border-gray-800 ${
+              className={`bg-radial from-green-200 to-green-300 border-8 border-gray-800 ${
                 gameOver && "before:z-10 before:bg-[rgba(0,0,0,0.5)] before:absolute before:inset-0"
               }`}
             >
@@ -211,7 +223,7 @@ function App() {
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-between w-50">
+          <div className="flex justify-between w-50 sm:w-30 flex-row sm:flex-col">
             {!gameOver ? (
               <>
                 <div className="relative w-28 h-28 m-2">
@@ -240,7 +252,7 @@ function App() {
                     <RightArrow />
                   </Button>
                 </div>
-                <div className=" w-16 flex flex-col justify-center items-center m-2">
+                <div className=" w-16 sm:w-30 flex flex-col sm:flex-row justify-center items-center m-2">
                   <Button handleClick={() => setActive(!isActive)} className="relative m-1">
                     {isActive ? <Pause /> : <Play />}
                   </Button>
@@ -255,7 +267,7 @@ function App() {
           </div>
         </div>
 
-        <div className="text-green-900 border-2 border-green-900 rounded-md p-2 mt-3">
+        <div className="bg-green-200 text-green-900 border-2 border-green-900 rounded-md p-2 mt-3">
           <p className="font-bold text-2xl">How to Play</p>
           <ul className="text-sm list-disc my-1 pl-8">
             <li>Use the arrow keys to move the snake.</li>
