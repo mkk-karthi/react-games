@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 .popup {
   animation: popup 1s ease-out;
 }

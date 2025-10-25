@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./App.css";
 import Button from "./components/Button";
 import {
@@ -10,11 +10,13 @@ import {
   RightArrow,
   UpArrow,
 } from "./components/Icons";
+import MobileSwiper from "./components/MobileSwiper";
 
 function App() {
   // set ground
-  const groundWidth = 40;
-  const groundHeight = 40;
+  const groundWidth = 30;
+  const groundHeight = 30;
+  const speed = 300;
   const ground = [...Array(groundHeight).keys()].map(() => [...Array(groundWidth)]);
   const StoreKey = "snake.score";
 
@@ -59,7 +61,7 @@ function App() {
 
   useEffect(() => {
     generateFood();
-    intervalRef.current = setInterval(moveSnake, 250);
+    intervalRef.current = setInterval(moveSnake, speed);
     reset();
 
     window.addEventListener("keydown", handleKeyDown);
@@ -123,34 +125,55 @@ function App() {
   };
 
   // click events
-  const clickArrow = (type) => {
-    if (!gameOverRef.current && isActiverRef.current == true) {
-      if (type == 1) setDirection((old) => (old != 2 ? type : old));
-      else if (type == 2) setDirection((old) => (old != 1 ? type : old));
-      else if (type == 3) setDirection((old) => (old != 4 ? type : old));
-      else if (type == 4) setDirection((old) => (old != 3 ? type : old));
-    }
-  };
+  const clickArrow = useCallback(
+    (type) => {
+      if (!gameOverRef.current && isActiverRef.current == true) {
+        if (type == 1) setDirection((old) => (old != 2 ? type : old));
+        else if (type == 2) setDirection((old) => (old != 1 ? type : old));
+        else if (type == 3) setDirection((old) => (old != 4 ? type : old));
+        else if (type == 4) setDirection((old) => (old != 3 ? type : old));
+      }
+    },
+    [setDirection]
+  );
 
   // Key events
-  const handleKeyDown = (e) => {
-    if (e.key == "ArrowUp") {
-      e.preventDefault();
-      clickArrow(1);
-    } else if (e.key == "ArrowDown") {
-      e.preventDefault();
-      clickArrow(2);
-    } else if (e.key == "ArrowLeft") {
-      e.preventDefault();
-      clickArrow(3);
-    } else if (e.key == "ArrowRight") {
-      e.preventDefault();
-      clickArrow(4);
-    } else if (e.key == " ") {
-      e.preventDefault();
-      setActive(!isActiverRef.current);
-    }
-  };
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key.startsWith("Arrow")) {
+        e.preventDefault();
+        if (e.key == "ArrowUp") {
+          clickArrow(1);
+        } else if (e.key == "ArrowDown") {
+          clickArrow(2);
+        } else if (e.key == "ArrowLeft") {
+          clickArrow(3);
+        } else if (e.key == "ArrowRight") {
+          clickArrow(4);
+        }
+      }
+      if (e.key == " ") {
+        e.preventDefault();
+        setActive(!isActiverRef.current);
+      }
+    },
+    [clickArrow]
+  );
+
+  const handleSwipe = useCallback(
+    ({ key }) => {
+      if (key == "ArrowUp") {
+        clickArrow(1);
+      } else if (key == "ArrowDown") {
+        clickArrow(2);
+      } else if (key == "ArrowLeft") {
+        clickArrow(3);
+      } else if (key == "ArrowRight") {
+        clickArrow(4);
+      }
+    },
+    [clickArrow]
+  );
 
   const reset = () => {
     setGameOver(false);
@@ -165,115 +188,149 @@ function App() {
 
   return (
     <>
-      <div className="p-4 min-h-screen flex place-items-center flex-col bg-green-200">
-        <p className="text-3xl font-bold text-green-900 capitalize text-center my-2">Snake Game</p>
-
-        {/* Score */}
-        <div className="flex justify-between my-2">
-          <div className="fs-2xl border-2 rounded-xl px-4 py-2 mx-1 bg-green-200 text-green border-green">
-            Score: {score}
-          </div>
-          <div className="fs-2xl border-2 rounded-xl px-4 py-2 mx-1 bg-green-200 text-green border-green">
-            Best: {bestScore}
-          </div>
+      <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-300 to-green-300 relative">
+        {/* Grass Background */}
+        <div className="fixed inset-0 bg-gradient-to-b from-green-600 to-green-800 opacity-90">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(76, 175, 80, 0.1) 2px, rgba(76, 175, 80, 0.1) 4px), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(76, 175, 80, 0.1) 2px, rgba(76, 175, 80, 0.1) 4px)`,
+            }}
+          />
         </div>
+        <h1
+          className="animate-bounce text-6xl font-bold text-green-800 my-8 text-center"
+          style={{
+            textShadow: "3px 3px 0 #fef08a, 5px 5px 10px rgba(0,0,0,0.3)",
+            animationDuration: "2s",
+          }}
+        >
+          🐍 Snakey Snake 🐍
+        </h1>
 
-        {/* Board */}
-        <div className="flex justify-center place-items-center flex-col sm:flex-row">
-          <div className="relative text-center m-2">
-            <div
-              className={`bg-radial from-green-200 to-green-300 border-8 border-gray-800 ${
-                gameOver && "before:z-10 before:bg-[rgba(0,0,0,0.5)] before:absolute before:inset-0"
-              }`}
-            >
-              {ground.map((row, x) => (
-                <div key={x} className="flex h-2">
-                  {row.map((col, y) => (
-                    <span
-                      key={y}
-                      className={`h-2 w-2 inline-block ${
-                        snake.filter((v) => v[0] == x && v[1] == y).length > 0
-                          ? snake[snake.length - 1][0] == x && snake[snake.length - 1][1] == y
-                            ? "bg-green-800 rounded-xs"
-                            : "bg-green-500"
-                          : ""
-                      } ${
-                        food[0] == x && food[1] == y
-                          ? "rounded-xl bg-gradient-to-b from-red-500 to-red-800"
-                          : ""
-                      }`}
-                    ></span>
+        <div className="bg-white/30 backdrop-blur-md p-4 m-4 rounded-3xl shadow-2xl">
+          {/* Score */}
+          <div className="flex justify-between my-2">
+            <div className="fs-2xl border-2 rounded-xl px-4 py-2 mx-1 bg-green-200 text-green border-green">
+              Score: {score}
+            </div>
+            <div className="fs-2xl border-2 rounded-xl px-4 py-2 mx-1 bg-green-200 text-green border-green">
+              Best: {bestScore}
+            </div>
+          </div>
+
+          {/* Game Board */}
+          <div className="flex justify-center place-items-center flex-col sm:flex-row">
+            <div className="relative text-center m-2">
+              <MobileSwiper onSwipe={handleSwipe}>
+                <div
+                  className={`bg-radial from-green-200 to-green-300 border-8 border-green-800 ${
+                    gameOver &&
+                    "before:z-10 before:bg-[rgba(0,0,0,0.5)] before:absolute before:inset-0"
+                  }`}
+                >
+                  {ground.map((row, x) => (
+                    <div key={x} className="flex h-[10px]">
+                      {row.map((col, y) => (
+                        <span
+                          key={y}
+                          className={`h-[10px] w-[10px] inline-block ${
+                            snake.filter((v) => v[0] == x && v[1] == y).length > 0
+                              ? snake[snake.length - 1][0] == x && snake[snake.length - 1][1] == y
+                                ? "bg-green-800 rounded-sm border-1 border-green"
+                                : "bg-green-500"
+                              : ""
+                          } ${
+                            food[0] == x && food[1] == y
+                              ? "bg-gradient-to-b from-red-500 to-red-800 rounded-full shadow-lg"
+                              : ""
+                          }`}
+                        ></span>
+                      ))}
+                    </div>
                   ))}
                 </div>
-              ))}
+              </MobileSwiper>
+
+              {gameOver ? (
+                <div className="absolute top-[50%] left-[50%] translate-[-50%] z-10 popup">
+                  <p className="text-2xl font-bold text-white capitalize text-center mt-2 mb-4">
+                    Game Over
+                  </p>
+                  <Button handleClick={reset} className="relative">
+                    Play Again!
+                  </Button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
 
-            {gameOver ? (
-              <div className="absolute top-[50%] left-[50%] translate-[-50%] z-10 popup">
-                <p className="text-2xl font-bold text-white capitalize text-center mt-2 mb-4">
-                  Game Over
-                </p>
-                <Button handleClick={reset} className="relative">
-                  Play Again!
-                </Button>
-              </div>
-            ) : (
-              ""
-            )}
+            {/* Buttons */}
+            <div className="flex justify-between w-50 sm:w-30 flex-row sm:flex-col">
+              {!gameOver ? (
+                <>
+                  <div className="relative w-28 h-28 m-2">
+                    <Button
+                      handleClick={() => clickArrow(1)}
+                      className="absolute top-0 left-[50%] translate-x-[-50%] translate-y-0"
+                    >
+                      <UpArrow />
+                    </Button>
+                    <Button
+                      handleClick={() => clickArrow(2)}
+                      className="absolute bottom-0 left-[50%]  translate-x-[-50%] translate-y-0"
+                    >
+                      <DownArrow />
+                    </Button>
+                    <Button
+                      handleClick={() => clickArrow(3)}
+                      className="absolute left-0 top-[50%] translate-x-0 translate-y-[-50%]"
+                    >
+                      <LeftArrow />
+                    </Button>
+                    <Button
+                      handleClick={() => clickArrow(4)}
+                      className="absolute right-0 top-[50%] translate-x-0 translate-y-[-50%]"
+                    >
+                      <RightArrow />
+                    </Button>
+                  </div>
+                  <div className=" w-16 sm:w-30 flex flex-col sm:flex-row justify-center items-center m-2">
+                    <Button handleClick={() => setActive(!isActive)} className="relative m-1">
+                      {isActive ? <Pause /> : <Play />}
+                    </Button>
+                    <Button handleClick={reset} className="relative m-1">
+                      <Restart />
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
 
-          {/* Buttons */}
-          <div className="flex justify-between w-50 sm:w-30 flex-row sm:flex-col">
-            {!gameOver ? (
-              <>
-                <div className="relative w-28 h-28 m-2">
-                  <Button
-                    handleClick={() => clickArrow(1)}
-                    className="absolute top-0 left-[50%] translate-x-[-50%] translate-y-0"
-                  >
-                    <UpArrow />
-                  </Button>
-                  <Button
-                    handleClick={() => clickArrow(2)}
-                    className="absolute bottom-0 left-[50%]  translate-x-[-50%] translate-y-0"
-                  >
-                    <DownArrow />
-                  </Button>
-                  <Button
-                    handleClick={() => clickArrow(3)}
-                    className="absolute left-0 top-[50%] translate-x-0 translate-y-[-50%]"
-                  >
-                    <LeftArrow />
-                  </Button>
-                  <Button
-                    handleClick={() => clickArrow(4)}
-                    className="absolute right-0 top-[50%] translate-x-0 translate-y-[-50%]"
-                  >
-                    <RightArrow />
-                  </Button>
-                </div>
-                <div className=" w-16 sm:w-30 flex flex-col sm:flex-row justify-center items-center m-2">
-                  <Button handleClick={() => setActive(!isActive)} className="relative m-1">
-                    {isActive ? <Pause /> : <Play />}
-                  </Button>
-                  <Button handleClick={reset} className="relative m-1">
-                    <Restart />
-                  </Button>
-                </div>
-              </>
-            ) : (
-              ""
-            )}
+          <div className="bg-green-200 text-green-900 border-2 border-green-900 rounded-md p-2 mt-3">
+            <p className="font-bold text-2xl">How to Play</p>
+            <ul className="text-sm list-disc my-1 pl-8">
+              <li>
+                Press the <strong>play</strong> button (or hit the <strong>Spacebar</strong>) to
+                start the game.
+              </li>
+              <li>
+                Use the <strong>Arrow keys</strong> (or <strong>Swipe</strong>) to control the
+                snake's direction.
+              </li>
+              <li>
+                <strong>Eat the food</strong> to grow longer.
+              </li>
+              <li>
+                <strong>Avoid crashing</strong> into the walls or yourself - doing so will end the
+                game!
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <div className="bg-green-200 text-green-900 border-2 border-green-900 rounded-md p-2 mt-3">
-          <p className="font-bold text-2xl">How to Play</p>
-          <ul className="text-sm list-disc my-1 pl-8">
-            <li>Use the arrow keys to move the snake.</li>
-            <li>Eat the food to grow longer.</li>
-            <li>Avoid hitting the walls or yourself - or the game ends!</li>
-          </ul>
         </div>
       </div>
     </>
