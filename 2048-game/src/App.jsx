@@ -316,7 +316,7 @@ function App() {
       <div
         className="min-h-screen flex items-center justify-center relative"
         style={{
-          backgroundImage: `repeating-radial-gradient(circle, var(--color-yellow-700), var(--color-amber-800) 30px, var(--color-yellow-700) 40px)`,
+          backgroundImage: `repeating-radial-gradient(circle, var(--color-yellow-700), var(--color-yellow-700) 30px, var(--color-amber-800) 30px, var(--color-amber-800) 32px)`,
         }}
       >
         {/* Main Container */}
