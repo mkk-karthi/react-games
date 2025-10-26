@@ -19,8 +19,7 @@ All games are hosted together in a **single repository** — each game has its o
 
 ## 🛠️ Upcoming / Feature Games
 
-- 🔲 **Puzzle Game**  
-- 🔲 **2048 Game (1024+ version)**  
+- 🔲 **Puzzle (Tetris) Game**
 
 ---
 
@@ -52,15 +51,16 @@ react-games/
 
 ## 🖥️ Tech Stack
 
-- ⚛️ **React**  
-- 🎨 **Tailwind CSS** (where applied)  
-- 🔧 Modern JavaScript (ES6+)  
+- ⚛️ **React**
+- 🎨 **Tailwind CSS** (where applied)
+- 🔧 Modern JavaScript (ES6+)
 
 ---
 
 ## 📌 How to Run Locally
 
-1. Clone the repository  
+1. Clone the repository
+
    ```bash
    git clone https://github.com/mkk-karthi/react-games.git
    cd react-games

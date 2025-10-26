@@ -33,7 +33,7 @@ function App() {
   const directionRef = useRef(direction);
   const foodRef = useRef(food);
   const snakeRef = useRef(snake);
-  const isActiverRef = useRef(isActive);
+  const isActiveRef = useRef(isActive);
   const gameOverRef = useRef(gameOver);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function App() {
     foodRef.current = food;
   }, [food]);
   useEffect(() => {
-    isActiverRef.current = isActive;
+    isActiveRef.current = isActive;
   }, [isActive]);
   useEffect(() => {
     gameOverRef.current = gameOver;
@@ -73,7 +73,7 @@ function App() {
   }, []);
 
   const moveSnake = () => {
-    if (!gameOverRef.current && isActiverRef.current == true) {
+    if (!gameOverRef.current && isActiveRef.current) {
       const lastIndex = snakeRef.current.length - 1;
       const tempSnake = [...snakeRef.current];
 
@@ -127,7 +127,7 @@ function App() {
   // click events
   const clickArrow = useCallback(
     (type) => {
-      if (!gameOverRef.current && isActiverRef.current == true) {
+      if (!gameOverRef.current && isActiveRef.current) {
         if (type == 1) setDirection((old) => (old != 2 ? type : old));
         else if (type == 2) setDirection((old) => (old != 1 ? type : old));
         else if (type == 3) setDirection((old) => (old != 4 ? type : old));
@@ -140,7 +140,7 @@ function App() {
   // Key events
   const handleKeyDown = useCallback(
     (e) => {
-      if (e.key.startsWith("Arrow")) {
+      if (e.key.startsWith("Arrow") && isActiveRef.current) {
         e.preventDefault();
         if (e.key == "ArrowUp") {
           clickArrow(1);
@@ -154,7 +154,7 @@ function App() {
       }
       if (e.key == " ") {
         e.preventDefault();
-        setActive(!isActiverRef.current);
+        setActive(!isActiveRef.current);
       }
     },
     [clickArrow]
@@ -205,7 +205,7 @@ function App() {
             animationDuration: "2s",
           }}
         >
-          🐍 Snakey Snake 🐍
+          🐍 Snake 🐍
         </h1>
 
         <div className="bg-white/30 backdrop-blur-md p-4 m-4 rounded-3xl shadow-2xl">
@@ -222,7 +222,7 @@ function App() {
           {/* Game Board */}
           <div className="flex justify-center place-items-center flex-col sm:flex-row">
             <div className="relative text-center m-2">
-              <MobileSwiper onSwipe={handleSwipe}>
+              <MobileSwiper isActive={isActive} onSwipe={handleSwipe}>
                 <div
                   className={`bg-radial from-green-200 to-green-300 border-8 border-green-800 ${
                     gameOver &&

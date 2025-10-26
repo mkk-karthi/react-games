@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 
-export default function MobileSwiper({ children, onSwipe }) {
+export default function MobileSwiper({ children, onSwipe, isActive }) {
   const wrapperRef = useRef(null);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
 
+  const isActiveRef = useRef(isActive);
+  useEffect(() => {
+    isActiveRef.current = isActive;
+  }, [isActive]);
+
   const handleTouchStart = useCallback((e) => {
-    if (!wrapperRef.current.contains(e.target)) {
+    if (!wrapperRef.current.contains(e.target) || !isActiveRef.current) {
       return;
     }
 
@@ -18,7 +23,7 @@ export default function MobileSwiper({ children, onSwipe }) {
 
   const handleTouchEnd = useCallback(
     (e) => {
-      if (!wrapperRef.current.contains(e.target)) {
+      if (!wrapperRef.current.contains(e.target) || !isActiveRef.current) {
         return;
       }
 
@@ -30,7 +35,9 @@ export default function MobileSwiper({ children, onSwipe }) {
       const deltaY = endY - startY;
       let key = null;
 
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX === deltaY) {
+        key = null;
+      } else if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX > 0) {
           key = "ArrowRight";
         } else {

@@ -30,7 +30,9 @@ export default function MobileSwiper({ children, onSwipe }) {
       const deltaY = endY - startY;
       let key = null;
 
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX === deltaY) {
+        key = null;
+      } else if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX > 0) {
           key = "ArrowRight";
         } else {

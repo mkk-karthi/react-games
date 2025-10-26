@@ -39,7 +39,7 @@ function App() {
     setTiles([]);
     setScore(0);
     setTimeout(() => {
-      createNewTile();
+      createNewTile(true);
     }, 10);
   };
 
@@ -71,13 +71,13 @@ function App() {
     // });
     // setTiles(newTiles);
 
-    createNewTile();
+    createNewTile(true);
     document.body.addEventListener("keydown", handleKeyDown);
 
     return () => document.body.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const createNewTile = () => {
+  const createNewTile = (isNew = false) => {
     let ids = boardDataRef.current
       .flat()
       .filter((v) => !v.value)
@@ -116,6 +116,9 @@ function App() {
         }
         return prevTiles;
       });
+      setTimeout(() => {
+        if (isNew) createNewTile();
+      }, 10);
     } else {
       setGameOver(true);
     }
@@ -177,61 +180,13 @@ function App() {
     }
   };
 
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (e.key.startsWith("Arrow")) {
-        e.preventDefault();
-        let isReverse = false;
-        let isVertical = false;
-
-        if (e.key == "ArrowUp") {
-          isReverse = false;
-          isVertical = true;
-        } else if (e.key == "ArrowDown") {
-          isReverse = true;
-          isVertical = true;
-        } else if (e.key == "ArrowLeft") {
-          isReverse = false;
-          isVertical = false;
-        } else if (e.key == "ArrowRight") {
-          isReverse = true;
-          isVertical = false;
-        }
-        updateTiles(isReverse, isVertical);
-      }
-    },
-    [updateTiles]
-  );
-
-  const handleSwipe = useCallback(
-    ({ key }) => {
-      let isReverse = false;
-      let isVertical = false;
-      if (key == "ArrowUp") {
-        isReverse = false;
-        isVertical = true;
-      } else if (key == "ArrowDown") {
-        isReverse = true;
-        isVertical = true;
-      } else if (key == "ArrowLeft") {
-        isReverse = false;
-        isVertical = false;
-      } else if (key == "ArrowRight") {
-        isReverse = true;
-        isVertical = false;
-      }
-      updateTiles(isReverse, isVertical);
-    },
-    [updateTiles]
-  );
-
   const checkGameOver = () => {
     if (boardDataRef.current.flat().filter((v) => !v.value).length <= 2) {
       let isGameOver = true;
       for (let i of [0, 1]) {
         for (let j of [0, 1]) {
-          const { ismoved } = moveTiles(i, j);
-          isGameOver = isGameOver && !ismoved;
+          const { isMoved } = moveTiles(i, j);
+          isGameOver = isGameOver && !isMoved;
         }
       }
       setGameOver(isGameOver);
@@ -307,9 +262,55 @@ function App() {
     return { currentScore, isMoved: isMoved || currentScore > 0, data: newArr };
   };
 
-  useEffect(() => {
-    console.log("tiles", tiles, boardData);
-  }, [tiles]);
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key.startsWith("Arrow")) {
+        e.preventDefault();
+        let isReverse = false;
+        let isVertical = false;
+
+        if (e.key == "ArrowUp") {
+          isReverse = false;
+          isVertical = true;
+        } else if (e.key == "ArrowDown") {
+          isReverse = true;
+          isVertical = true;
+        } else if (e.key == "ArrowLeft") {
+          isReverse = false;
+          isVertical = false;
+        } else if (e.key == "ArrowRight") {
+          isReverse = true;
+          isVertical = false;
+        }
+        updateTiles(isReverse, isVertical);
+      }
+    },
+    [updateTiles]
+  );
+
+  const handleSwipe = useCallback(
+    ({ key }) => {
+      if (key) {
+        let isReverse = false;
+        let isVertical = false;
+        if (key == "ArrowUp") {
+          isReverse = false;
+          isVertical = true;
+        } else if (key == "ArrowDown") {
+          isReverse = true;
+          isVertical = true;
+        } else if (key == "ArrowLeft") {
+          isReverse = false;
+          isVertical = false;
+        } else if (key == "ArrowRight") {
+          isReverse = true;
+          isVertical = false;
+        }
+        updateTiles(isReverse, isVertical);
+      }
+    },
+    [updateTiles]
+  );
 
   return (
     <>
