@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-games/rock-paper-scissors/static/css/main.fa98b4c9.css",
-    "main.js": "/react-games/rock-paper-scissors/static/js/main.09bc97f4.js",
+    "main.css": "/react-games/rock-paper-scissors/static/css/main.247b8e0e.css",
+    "main.js": "/react-games/rock-paper-scissors/static/js/main.47085127.js",
     "static/js/453.943ae0a4.chunk.js": "/react-games/rock-paper-scissors/static/js/453.943ae0a4.chunk.js",
     "static/media/success.mp3": "/react-games/rock-paper-scissors/static/media/success.fd2c2fea27379cbc44da.mp3",
     "static/media/fail.mp3": "/react-games/rock-paper-scissors/static/media/fail.9633cf62a3b34193e0c6.mp3",
@@ -12,12 +12,12 @@
     "index.html": "/react-games/rock-paper-scissors/index.html",
     "static/media/audio.svg": "/react-games/rock-paper-scissors/static/media/audio.04785d311a6a824d030dca7ef9848529.svg",
     "static/media/audio-off.svg": "/react-games/rock-paper-scissors/static/media/audio-off.817ace358a5a4f325be480fda7e33148.svg",
-    "main.fa98b4c9.css.map": "/react-games/rock-paper-scissors/static/css/main.fa98b4c9.css.map",
-    "main.09bc97f4.js.map": "/react-games/rock-paper-scissors/static/js/main.09bc97f4.js.map",
+    "main.247b8e0e.css.map": "/react-games/rock-paper-scissors/static/css/main.247b8e0e.css.map",
+    "main.47085127.js.map": "/react-games/rock-paper-scissors/static/js/main.47085127.js.map",
     "453.943ae0a4.chunk.js.map": "/react-games/rock-paper-scissors/static/js/453.943ae0a4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa98b4c9.css",
-    "static/js/main.09bc97f4.js"
+    "static/css/main.247b8e0e.css",
+    "static/js/main.47085127.js"
   ]
 }
