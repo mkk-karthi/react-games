@@ -9,10 +9,11 @@ All games are hosted together in a **single repository** — each game has its o
 
 ## 🚀 Games Developed
 
-- ✅ **Tic Tac Toe** – Classic X and O strategy game  
-- ✅ **Rock Paper Scissors** – Challenge your luck and reflexes  
-- ✅ **Snake Game** – Retro snake with keyboard & button controls  
-- ✅ **Memory Card Game** – Flip and match cards to test your memory  
+- ✅ **Tic Tac Toe** – Classic X and O strategy game
+- ✅ **Rock Paper Scissors** – Challenge your luck and reflexes
+- ✅ **Snake Game** – Retro snake with keyboard & button controls
+- ✅ **Memory Card Game** – Flip and match cards to test your memory
+- ✅ **2048 Game (1024+ version)** – Keep merging tiles to reach the number 2048 and beyond
 
 ---
 
@@ -20,6 +21,13 @@ All games are hosted together in a **single repository** — each game has its o
 
 - 🔲 **Puzzle Game**  
 - 🔲 **2048 Game (1024+ version)**  
+
+---
+
+## Tools Used
+
+- **CRA** – Tic Tac Toe, Rock Paper Scissors
+- **vite** – Snake Game, Memory Card Game
 
 ---
 

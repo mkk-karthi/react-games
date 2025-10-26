@@ -1,16 +1,86 @@
-# React + Vite
+# 🧩 2048 Game – Wooden Themed Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beautifully animated **2048 Puzzle Game** built using **React** and **Tailwind CSS**, featuring a classic **wooden board design**, **smooth animations**, and **persistent high score tracking**.
 
-Currently, two official plugins are available:
+🎮 **Play Now:** [2048 Game Live Demo](https://mkk-karthi.github.io/react-games/2048-game)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🪵 **Elegant Wooden Theme** for a natural, classic look
+- ⚡ **Smooth Tile Animations** for every move and merge
+- 🧠 **Auto Score & High Score Management** (stored locally)
+- 📱 **Responsive Design** — play seamlessly on desktop or mobile
+- 🔢 **2048 Goal** — keep merging tiles to reach the number 2048 and beyond!
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+| Technology            | Purpose                                              |
+| --------------------- | ---------------------------------------------------- |
+| ⚛️ **React**          | Game logic, state management, and component-based UI |
+| 🎨 **Tailwind CSS**   | Fast, clean, and responsive styling                  |
+| 💾 **Local Storage**  | Save and manage high scores persistently             |
+| 🧩 **CSS Animations** | Smooth tile movement and merge effects               |
+
+---
+
+## ⚙️ Installation & Run Locally
+
+1. Clone this project
+   ```bash
+   git clone https://github.com/mkk-karthi/react-games.git
+   cd react-games/2048-game
+   ```
+
+2. Install dependencies
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open in your browser
+
+   ```
+   http://localhost:3000/
+   ```
+
+---
+
+## 🧠 Gameplay Instructions
+
+* Use **Arrow Keys / Swipe Gestures** to move tiles.
+* When two tiles with the same number touch, they **merge into one!**
+* Keep going until you reach **2048** or even higher scores.
+* Your **highest score** is saved automatically in local storage.
+
+---
+
+## 🪵 Preview
+
+> 🖼️ *A wooden classic brought to life with modern animations and responsive design.*
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/2048-game/public/Screenshot.png" alt="2048 - React Games (screenshot)">
+</p>
+
+---
+
+## 💡 Future Enhancements
+
+* ⏪ Add “Undo Last Move” functionality
+* 🌍 Global Leaderboard support
+
+---
+
+## 🧑‍💻 Developed by [MKK Karthi](https://github.com/mkk-karthi)
+
+⭐ **If you enjoyed the game, please give it a star on GitHub!**
