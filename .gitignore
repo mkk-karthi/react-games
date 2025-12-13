@@ -1,7 +1,8 @@
-*/build
-*/node_modules
-*/coverage
 */package-lock.json
+*/node_modules
+*/build
+*/dist
+*/coverage
 /temp-deploy
 
 deploy.sh
