@@ -144,7 +144,7 @@ export default function App() {
       {/* Floating decorative elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
-          className="absolute top-14 sm:top-20 left-1/3 sm:left-10 text-4xl animate-float"
+          className="absolute top-14 sm:top-20 left-1/3 sm:left-20 text-4xl animate-float"
           style={{ animationDelay: "0s" }}
         >
           🐟
@@ -156,13 +156,13 @@ export default function App() {
           🐠
         </div>
         <div
-          className="absolute bottom-1 left-20 text-4xl animate-float"
+          className="absolute bottom-1 left-20 sm:left-32 text-4xl animate-float"
           style={{ animationDelay: "2s" }}
         >
           🦈
         </div>
         <div
-          className="absolute top-[22%] sm:top-20 right-10 sm:right-10 text-3xl animate-float"
+          className="absolute top-[22%] sm:top-20 right-10 sm:right-28 text-3xl animate-float"
           style={{ animationDelay: "2.5s" }}
         >
           🪼
