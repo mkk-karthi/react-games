@@ -1,17 +1,9 @@
-*/build
+*/package-lock.json
 */node_modules
+*/build
+*/dist
 */coverage
-temp-deploy/
+*/.vite
+/temp-deploy
 
 deploy.sh
-*/build\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
-*/build\n*/dist\n*/node_modules\n*/coverage\ntemp-deploy/\n\ndeploy.sh
