@@ -14,19 +14,14 @@ All games are hosted together in a **single repository** — each game has its o
 - ✅ **Snake Game** – Retro snake with keyboard & button controls
 - ✅ **Memory Card Game** – Flip and match cards to test your memory
 - ✅ **2048 Game (1024+ version)** – Keep merging tiles to reach the number 2048 and beyond
-
----
-
-## 🛠️ Upcoming / Feature Games
-
-- 🔲 **Puzzle (Tetris) Game**
+- ✅ **Puzzle (Tetris) Game** – Rotate and place falling blocks to form complete lines
 
 ---
 
 ## Tools Used
 
 - **CRA** – Tic Tac Toe, Rock Paper Scissors
-- **vite** – Snake Game, Memory Card Game
+- **vite** – Snake Game, Memory Match Game, Puzzle (Tetris)
 
 ---
 
@@ -41,8 +36,8 @@ react-games/
 │── rock-paper-scissor/
 │── snake-game/
 │── memory-cards-matching/
-│── puzzle-game/        (coming soon)
-│── 2048-game/          (coming soon)
+│── puzzle-tetris/
+│── 2048-game/
 └── README.md
 
 ```

@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useState } from "react";
+
 function Tiles({ tile }) {
   const getPositions = (x, y) => {
     let space = 0.25;
@@ -14,7 +17,11 @@ function Tiles({ tile }) {
 
     return { x: postionX * space, y: postionY * space };
   };
-  const curPos = getPositions(tile.x, tile.y);
+  const [curPos, setCurPos] = useState(getPositions(tile.x, tile.y));
+
+  useEffect(() => {
+    setCurPos(getPositions(tile.x, tile.y));
+  }, [tile]);
 
   const getTileBg = (val) => {
     let colors = ["sky", "yellow", "orange", "green"];
