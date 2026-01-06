@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import Tiles from "./components/Tiles";
 import MobileSwiper from "./components/MobileSwiper";
+import useFaviconTheme from "./hooks/useFaviconTheme";
 
 function App() {
   const noRows = 4;
@@ -44,33 +45,6 @@ function App() {
   };
 
   useEffect(() => {
-    // let i = 1;
-    // let initData = initialData.map((r) =>
-    //   r.map((c) => {
-    //     i *= 2;
-    //     return {
-    //       ...c,
-    //       value: i,
-    //     };
-    //   })
-    // );
-    // setBoardData(initData);
-    // const newTiles = [];
-    // initData.flat().forEach((cell) => {
-    //   const x = cell.id % noRows;
-    //   const y = Math.floor(cell.id / noRows);
-
-    //   uuid.current++;
-    //   newTiles.push({
-    //     uid: uuid.current,
-    //     id: cell.id,
-    //     value: cell.value,
-    //     x,
-    //     y,
-    //   });
-    // });
-    // setTiles(newTiles);
-
     createNewTile(true);
     document.body.addEventListener("keydown", handleKeyDown);
 
@@ -311,6 +285,8 @@ function App() {
     },
     [updateTiles]
   );
+
+  useFaviconTheme();
 
   return (
     <>

@@ -11,6 +11,7 @@ import {
   UpArrow,
 } from "./components/Icons";
 import MobileSwiper from "./components/MobileSwiper";
+import useFaviconTheme from "./hooks/useFaviconTheme";
 
 function App() {
   // set ground
@@ -185,6 +186,8 @@ function App() {
     setDirection(4);
     generateFood();
   };
+
+  useFaviconTheme();
 
   return (
     <>

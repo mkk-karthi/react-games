@@ -13,6 +13,7 @@ import { ReactComponent as AudioOffSvg } from "./assets/audio-off.svg";
 import popSound from "./assets/pop-sound.mp3";
 import successSound from "./assets/success.mp3";
 import failSound from "./assets/fail.mp3";
+import useFaviconTheme from "./components/useFaviconTheme";
 
 function App() {
   // 1-Rock, 2-Paper, 3-Scissor
@@ -34,10 +35,10 @@ function App() {
   const failAudio = new Audio(failSound);
 
   useEffect(() => {
-    if (teamA.score == maxScore || teamB.score == maxScore) {
-      setFinalWinner(teamA.score == maxScore ? 1 : 2);
+    if (teamA.score === maxScore || teamB.score === maxScore) {
+      setFinalWinner(teamA.score === maxScore ? 1 : 2);
       setGameOver(true);
-      if (teamA.score == maxScore) {
+      if (teamA.score === maxScore) {
         if (!muted) successAudio.play();
       } else {
         if (!muted) failAudio.play();
@@ -47,9 +48,9 @@ function App() {
 
   const checkWinner = (a, b) => {
     if (a && b) {
-      if ((a == 1 && b == 3) || (a == 2 && b == 1) || (a == 3 && b == 2)) {
+      if ((a === 1 && b === 3) || (a === 2 && b === 1) || (a === 3 && b === 2)) {
         return 1;
-      } else if (a == b) {
+      } else if (a === b) {
         return 3;
       } else {
         return 2;
@@ -67,7 +68,7 @@ function App() {
     let randomPick = options[randomIndex];
 
     // avoid continue draws
-    if (randomPick == pick && teamA.picked == teamB.picked && teamA.picked > 0) {
+    if (randomPick === pick && teamA.picked === teamB.picked && teamA.picked > 0) {
       handleClick(pick);
       return;
     }
@@ -77,9 +78,9 @@ function App() {
 
     let teamAScore = teamA.score;
     let teamBScore = teamB.score;
-    if (result == 1) {
+    if (result === 1) {
       teamAScore++;
-    } else if (result == 2) {
+    } else if (result === 2) {
       teamBScore++;
     }
     setTeamA({ ...teamA, picked: pick, score: teamAScore });
@@ -104,6 +105,7 @@ function App() {
     floorwidth: 1600,
   };
 
+  useFaviconTheme();
   return (
     <>
       <div className="relative p-4 min-h-screen flex justify-center place-items-center flex-col">
@@ -156,7 +158,7 @@ function App() {
         <div className="h-9 my-2">
           {winner ? (
             <p className="text-gray-900 dark:text-white text-3xl font-bold text-center capitalize">
-              {winner == 1 ? "You win!" : winner == 2 ? "You lose!" : "Draw"}
+              {winner === 1 ? "You win!" : winner === 2 ? "You lose!" : "Draw"}
             </p>
           ) : (
             ""
@@ -195,7 +197,7 @@ function App() {
 
       {gameOver && (
         <>
-          {finalWinner == 1 && (
+          {finalWinner === 1 && (
             <div className="absolute inset-[0]">
               <div className="absolute inset-x-[50%] bottom-[10]">
                 <ConfettiExplosion {...confettiProps} />
@@ -205,7 +207,7 @@ function App() {
           <div className="fixed top-[0] left-[0] flex justify-center items-center w-screen h-screen overflow-hidden bg-[rgba(0,0,0,0.8)]">
             <div>
               <p className="text-white text-3xl font-bold capitalize text-center [text-shadow:0_0_15px_#0] my-5">
-                {finalWinner == 1 ? "You win!" : finalWinner == 2 ? "You lose!" : "Draw"}
+                {finalWinner === 1 ? "You win!" : finalWinner === 2 ? "You lose!" : "Draw"}
               </p>
               <button className="super-button" onClick={reset}>
                 Play Again

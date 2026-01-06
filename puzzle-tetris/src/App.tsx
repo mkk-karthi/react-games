@@ -7,6 +7,7 @@ import { Hud } from "./components/Hud";
 import { NextQueue } from "./components/NextQueue";
 import { useGameEngine } from "./game";
 import { MobileControls } from "./components/MobileControls";
+import useFaviconTheme from "./hooks/useFaviconTheme";
 
 export default function App() {
   const {
@@ -139,6 +140,8 @@ export default function App() {
     }
   };
 
+  useFaviconTheme();
+  
   return (
     <div className="relative flex min-h-screen lg:w-screen overflow-hidden text-ocean-50">
       {/* Floating decorative elements */}

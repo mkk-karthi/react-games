@@ -6,6 +6,7 @@ import memoryMatching from "./assets/memory-cards-matching.png";
 import snakeGame from "./assets/snake-game.png";
 import TwoZeroFourEightGame from "./assets/2048-game.png";
 import puzzleTetris from "./assets/puzzle-tetris.png";
+import useFaviconTheme from "./hooks/useFaviconTheme";
 
 export default function App() {
   const gamesList = [
@@ -40,6 +41,9 @@ export default function App() {
       link: "puzzle-tetris",
     },
   ];
+
+  useFaviconTheme();
+
   return (
     <div
       className="bg-gray-800 p-8 min-w-screen min-h-screen flex justify-center items-center flex-col"

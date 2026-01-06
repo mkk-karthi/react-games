@@ -6,6 +6,7 @@ import useTimer from "./hooks/useTimer";
 import successSound from "./assets/success.mp3";
 import swooshSound from "./assets/swoosh.mp3";
 import levelUpSound from "./assets/level-up.mp3";
+import useFaviconTheme from "./hooks/useFaviconTheme";
 
 const THEMES = {
   faces: {
@@ -219,6 +220,8 @@ function App() {
     border: "3px solid rgba(255,255,255,0.8)",
     transform: "rotateY(180deg)",
   };
+
+  useFaviconTheme();
 
   return (
     <div className={`relative min-h-screen ${getThemeBgClass()} p-4 flex items-center`}>
