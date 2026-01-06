@@ -11,6 +11,7 @@ Play against your friends or challenge the computer with **Easy** and **Hard** m
 - 🤖 **Play with Computer**
   - **Easy Mode** – Random moves.
   - **Hard Mode** – Uses strategy (minimax algorithm).
+- 🏆 **Play without Draw** - Win every match
 
 ---
 
