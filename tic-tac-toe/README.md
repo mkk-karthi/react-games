@@ -62,14 +62,13 @@ npm run build
 ## 📸 Screenshots
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/Screenshot-1.png" alt="Tic tac toe (Screenshot-1)"><br>
-<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/Screenshot-2.png" alt="Tic tac toe (Screenshot-1)"><br>
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/tic-tac-toe/public/Screenshot-1.png" alt="Tic tac toe (Screenshot-1)">
 </p>
 
 ---
 
-## 📝 Future Improvements
+## 👨‍💻 Created By
 
-- Add **scoreboard tracking**.
-- Add **online multiplayer mode**.
-- Improve **UI animations**.
+**Karthikeyan M**
+[GitHub](https://github.com/mkk-karthi) • [LinkedIn](https://www.linkedin.com/in/karthikeyan-developer-mkk)
+

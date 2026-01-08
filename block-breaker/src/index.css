@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@theme {
+  /* Neon Colors */
+  --color-neon-blue: #00f3ff;
+  --color-neon-purple: #bf00ff;
+  --color-neon-pink: #ff006e;
+  --color-neon-green: #39ff14;
+  --color-neon-yellow: #ffea00;
+
+  /* Animations */
+  --animate-block-break: blockBreak 0.3s ease-out forwards;
+  --animate-ball-trail: ballTrail 0.5s ease-out forwards;
+  --animate-paddle-hit: paddleHit 0.2s ease-out;
+  --animate-particle-burst: particleBurst 0.6s ease-out forwards;
+  --animate-pulse-glow: pulseGlow 1s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shake: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  --animate-grid-move: gridMove 20s linear infinite;
+  --animate-float-up: floatUp 1s ease-out forwards;
+  --animate-explode: explode 0.8s ease-out forwards;
+
+  @keyframes blockBreak {
+    0% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2) rotate(5deg);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(0) rotate(15deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes ballTrail {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes paddleHit {
+    0%,
+    100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(0.9);
+    }
+  }
+
+  @keyframes particleBurst {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--tx), var(--ty)) scale(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    }
+    50% {
+      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+  @keyframes gridMove {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(40px);
+    }
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-50px) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes explode {
+    0% {
+      transform: translate(0, 0) scale(0.5);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--tx), var(--ty)) scale(0);
+      opacity: 0;
+    }
+  }
+}
+
+:root {
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0a0a0a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor; /* Stronger glow */
+  }
+
+  .neon-border {
+    border: 2px solid currentColor;
+    box-shadow: 0 0 10px currentColor, inset 0 0 10px currentColor;
+  }
+
+  .glass-effect {
+    background: rgba(10, 10, 20, 0.4); /* Darker glass for neon contrast */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .font-cyber {
+    font-family: "Orbitron", "Inter", system-ui, sans-serif;
+  }
+
+  .retro-grid {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    left: -50%;
+    top: -50%;
+    background-image: linear-gradient(rgba(0, 243, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(235, 0, 255, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform-origin: center;
+    transform: perspective(500px) rotateX(60deg);
+    animation: grid-move 5s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
+  }
+
+  .retro-grid::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, #0a0a0a 70%);
+  }
+
+  .shake-screen {
+    animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Disable text selection for game elements */
+.game-element {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
