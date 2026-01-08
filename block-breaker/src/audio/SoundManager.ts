@@ -31,6 +31,7 @@ export class SoundManager {
 
   playSound(effect: SoundEffect) {
     if (this.isMuted || !this.audioContext) return;
+    console.log("effect", effect);
 
     this.ensureAudioContext();
     if (!this.audioContext) return;
@@ -44,30 +45,33 @@ export class SoundManager {
 
     switch (effect) {
       case "paddleHit":
+        oscillator.type = "sine";
         oscillator.frequency.setValueAtTime(220, now);
-        oscillator.frequency.exponentialRampToValueAtTime(180, now + 0.1);
-        gainNode.gain.setValueAtTime(this.masterVolume * 0.3, now);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+        oscillator.frequency.exponentialRampToValueAtTime(400, now + 0.08);
+        gainNode.gain.setValueAtTime(this.masterVolume + 0.1, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
         oscillator.start(now);
         oscillator.stop(now + 0.1);
         break;
 
       case "blockHit":
-        oscillator.frequency.setValueAtTime(440, now);
-        oscillator.frequency.exponentialRampToValueAtTime(330, now + 0.08);
-        gainNode.gain.setValueAtTime(this.masterVolume * 0.25, now);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+        oscillator.type = "square";
+        oscillator.frequency.setValueAtTime(450, now);
+        oscillator.frequency.exponentialRampToValueAtTime(300, now + 0.05);
+        gainNode.gain.setValueAtTime(this.masterVolume, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
         oscillator.start(now);
-        oscillator.stop(now + 0.08);
+        oscillator.stop(now + 0.05);
         break;
 
       case "wallHit":
-        oscillator.frequency.setValueAtTime(330, now);
-        oscillator.frequency.exponentialRampToValueAtTime(280, now + 0.05);
-        gainNode.gain.setValueAtTime(this.masterVolume * 0.2, now);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(700, now);
+        oscillator.frequency.exponentialRampToValueAtTime(500, now + 0.04);
+        gainNode.gain.setValueAtTime(0.25, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
         oscillator.start(now);
-        oscillator.stop(now + 0.05);
+        oscillator.stop(now + 0.04);
         break;
 
       case "blockBreak":
@@ -105,28 +109,13 @@ export class SoundManager {
         break;
 
       case "loseLife":
-        // Descending "Fail" Melody (F3 -> E3 -> D3)
-        const loseNotes = [174.61, 164.81, 146.83]; // F3, E3, D3
-        const loseDuration = 0.25;
-
-        loseNotes.forEach((freq, i) => {
-          const osc = this.audioContext!.createOscillator();
-          const gn = this.audioContext!.createGain();
-          osc.connect(gn);
-          gn.connect(this.audioContext!.destination);
-
-          osc.type = "sawtooth";
-          const startTime = now + i * loseDuration;
-
-          osc.frequency.setValueAtTime(freq, startTime);
-          osc.frequency.exponentialRampToValueAtTime(freq * 0.8, startTime + loseDuration);
-
-          gn.gain.setValueAtTime(this.masterVolume * 0.3, startTime);
-          gn.gain.exponentialRampToValueAtTime(0.01, startTime + loseDuration);
-
-          osc.start(startTime);
-          osc.stop(startTime + loseDuration);
-        });
+        oscillator.type = "triangle";
+        oscillator.frequency.setValueAtTime(500, now);
+        oscillator.frequency.exponentialRampToValueAtTime(90, now + 0.8);
+        gainNode.gain.setValueAtTime(this.masterVolume * 2, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1);
+        oscillator.start(now);
+        oscillator.stop(now + 1);
         break;
 
       case "gameOver":
