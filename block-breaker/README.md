@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# 🕹️ Neon Block Breaker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fast-paced **Block Breaker game** built using **React + TypeScript** with **Vite** and styled with **Tailwind CSS v4**.  
+The game features a vibrant Neon/Retro aesthetic, smooth DOM-based 60fps rendering, synthesized musical sound effects, and full mobile responsiveness.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- 🎨 **Pure Neon Aesthetic**: Glassmorphism effects, glowing borders, and vibrant colors.
+- 🎵 **Synthesized Audio**: Real-time musical sequences for 'Lose Life', 'Game Over', and 'Victory' using Web Audio API.
+- 🎬 **Dynamic Animations**: Block breaking effects, screen shake, and emoji particle explosions.
+- 📱 **Mobile First**: Optimized for both portrait and landscape modes with intuitive touch and swipe controls.
+- ⚡ **High Performance**: Ref-based DOM rendering for butter-smooth 60fps gameplay.
+- ⌨️ **Keyboard Support**: Full arrow key and spacebar support for desktop players.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ **React 19** (TypeScript)
+- 🎨 **Tailwind CSS v4** (CSS Variables & @theme)
+- ⚡ **Vite** (Build tool)
+- 🔊 **Web Audio API** (Sound synthesis)
+- 🎞️ **CSS Keyframes** (Advanced animations)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🎮 Controls
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Desktop
+
+- ⬅️ / ➡️ Arrow Keys – Move paddle left/right
+- ⎵ Space – Launch ball / Start game
+- ⏸️ P – Pause game
+
+### Mobile
+
+- 👆 Touch & Drag – Move paddle
+- 📲 Tap – Launch ball / Start game
+
+## 📸 Screenshot
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/mkk-karthi/react-games/master/block-breaker/public/Screenshot.png" alt="Block Breaker - React Games (screenshot)">
+</p>
+
+---
+
+## 🧑‍💻 Getting Started
+
+### Prerequisites
+
+- Node.js & npm installed
+
+### Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/mkk-karthi/react-games.git
+cd react-games/block-breaker
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+The app will run at `http://localhost:3000`.
+
+---
+
+## 👨‍💻 Created By
+
+**Karthikeyan M**
+[GitHub](https://github.com/mkk-karthi) • [LinkedIn](https://www.linkedin.com/in/karthikeyan-developer-mkk)
