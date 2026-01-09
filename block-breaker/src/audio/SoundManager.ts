@@ -31,7 +31,6 @@ export class SoundManager {
 
   playSound(effect: SoundEffect) {
     if (this.isMuted || !this.audioContext) return;
-    console.log("effect", effect);
 
     this.ensureAudioContext();
     if (!this.audioContext) return;

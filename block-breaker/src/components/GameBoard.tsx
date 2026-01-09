@@ -45,7 +45,6 @@ export const GameBoard: React.FC = () => {
 
   // Initialize game engine and input manager
   useEffect(() => {
-    console.log("[GameBoard] Initializing sizing effect");
 
     const updateBoardSize = () => {
       // Use window/viewport size for max constraints
@@ -66,7 +65,6 @@ export const GameBoard: React.FC = () => {
         width = height * aspectRatio;
       }
 
-      console.log(`[GameBoard] Resizing to ${width}x${height} (Mobile: ${isMobile})`);
       setBoardSize({ width, height });
     };
 
@@ -80,26 +78,17 @@ export const GameBoard: React.FC = () => {
 
   // Initialize engine when board size is set
   useEffect(() => {
-    console.log("[GameBoard] Engine initialization effect triggered", {
-      container: !!containerRef.current,
-      engine: !!engineRef.current,
-      boardSize,
-    });
-
     if (!containerRef.current) {
       console.warn("[GameBoard] Container ref missing, skipping init");
       return;
     }
 
     if (engineRef.current) {
-      console.log("[GameBoard] Engine already initialized, skipping");
       return;
     }
 
     try {
-      console.log("[GameBoard] Creating GameEngine");
       const engine = new GameEngine(boardSize.width, boardSize.height);
-      console.log("[GameBoard] Creating InputManager");
       const inputManager = new InputManager();
 
       engineRef.current = engine;
@@ -184,7 +173,6 @@ export const GameBoard: React.FC = () => {
       });
 
       // Initialize input manager
-      console.log("[GameBoard] Initializing InputManager");
       inputManager.initialize(containerRef.current);
 
       // Subscribe to input changes
@@ -208,11 +196,9 @@ export const GameBoard: React.FC = () => {
       });
 
       // Start game loop
-      console.log("[GameBoard] Starting game loop");
       engine.startGameLoop();
 
       // Set initial state force (to ensure mapped elements render)
-      console.log("[GameBoard] Setting initial state");
       const initialState = engine.getState();
       setGameState(initialState);
 
@@ -230,7 +216,6 @@ export const GameBoard: React.FC = () => {
     }
 
     return () => {
-      console.log("[GameBoard] Cleanup");
       if (engineRef.current) {
         engineRef.current.stopGameLoop();
         engineRef.current = null;
