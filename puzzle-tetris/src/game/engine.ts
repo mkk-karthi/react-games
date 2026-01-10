@@ -122,6 +122,11 @@ const lockAndProceed = (state: GameState) => {
   const totalLines = state.lines + cleared;
   const level = computeLevel(totalLines);
 
+  // Level up logic
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem("puzzle-tetris-lines", totalLines.toString());
+  }
+
   const [nextActive, nextQueue] = spawnPiece(state.queue);
   const status: GameStatus =
     nextActive && isValidPosition(clearedBoard, nextActive) ? "playing" : "over";
@@ -143,13 +148,19 @@ export const createInitialState = (): GameState => {
   const board = createEmptyBoard();
   const [active, queue] = spawnPiece([]);
   const status: GameStatus = active && isValidPosition(board, active) ? "ready" : "over";
+
+  const savedLines =
+    typeof localStorage !== "undefined" ? localStorage.getItem("puzzle-tetris-lines") : null;
+  const lines = savedLines ? parseInt(savedLines, 10) : 0;
+  const level = computeLevel(lines);
+
   return {
     board,
     active,
     queue,
     score: 0,
-    lines: 0,
-    level: 0,
+    lines,
+    level: level,
     status,
     lockUntil: null,
   };
@@ -249,6 +260,13 @@ export const togglePause = (state: GameState): GameState => {
 
 export const restartGame = (): GameState => {
   const next = createInitialState();
+  next.lines = 0;
+  next.level = 0;
+
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem("puzzle-tetris-lines", "0");
+  }
+
   return { ...next, status: "playing" };
 };
 

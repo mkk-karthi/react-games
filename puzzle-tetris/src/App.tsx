@@ -42,6 +42,7 @@ export default function App() {
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
+      if(event.repeat) return
       const current = stateRef.current;
       const key = event.key.toLowerCase();
 
@@ -246,7 +247,6 @@ export default function App() {
           <BoardOverlay
             status={state.status}
             onPrimary={handlePrimary}
-            onRestart={restart}
             className="mx-auto max-w-[80%]"
           />
         </div>

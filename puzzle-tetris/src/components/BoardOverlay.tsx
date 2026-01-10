@@ -3,12 +3,10 @@ import type { GameStatus } from "../game";
 export const BoardOverlay = ({
   status,
   onPrimary,
-  onRestart,
   className,
 }: {
   status: GameStatus;
   onPrimary: () => void;
-  onRestart: () => void;
   className?: string;
 }) => {
   if (status === "playing") return null;
@@ -44,14 +42,6 @@ export const BoardOverlay = ({
           >
             {label}
           </button>
-          {isOver && (
-            <button
-              onClick={onRestart}
-              className="rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-white transition hover:border-white/40"
-            >
-              Restart
-            </button>
-          )}
         </div>
       </div>
     </div>
