@@ -26,7 +26,6 @@ export interface GameState {
   active: ActivePiece | null;
   queue: PieceType[];
   score: number;
-  lines: number;
   level: number;
   status: GameStatus;
   lockUntil: number | null;

@@ -2,7 +2,7 @@ import type { PieceType, Vec } from "./types";
 
 export const BOARD_WIDTH = 10;
 export const BOARD_HEIGHT = 12;
-export const LINES_PER_LEVEL = 10;
+export const SCORES_PER_LEVEL = 10;
 
 export const PIECE_COLORS: Record<PieceType, string> = {
   I: "#22d3ee", // Cyan - like ocean water
@@ -58,8 +58,6 @@ export const PIECE_SHAPES: Record<PieceType, Vec[]> = {
     { x: 1, y: 1 },
   ],
 };
-
-export const LINE_CLEAR_VALUES = [0, 100, 300, 500, 800];
 
 export const GRAVITY_DELAY = (level: number) => Math.max(120, 900 - level * 60);
 

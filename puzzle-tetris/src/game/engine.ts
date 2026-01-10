@@ -2,8 +2,7 @@ import {
   BOARD_HEIGHT,
   BOARD_WIDTH,
   GRAVITY_DELAY,
-  LINES_PER_LEVEL,
-  LINE_CLEAR_VALUES,
+  SCORES_PER_LEVEL,
   LOCK_GRACE_MS,
   PIECE_COLORS,
   PIECE_SHAPES,
@@ -106,25 +105,19 @@ const clearLines = (board: Board) => {
   return { board: remaining, cleared };
 };
 
-const scoreLines = (lines: number, level: number) => {
-  const base = LINE_CLEAR_VALUES[lines] ?? 0;
-  return base * Math.max(1, level + 1);
-};
-
-const computeLevel = (totalLines: number) => Math.floor(totalLines / LINES_PER_LEVEL);
+const computeLevel = (score: number) => Math.floor(score / SCORES_PER_LEVEL);
 
 const lockAndProceed = (state: GameState) => {
   if (!state.active) return state;
 
   const merged = mergePiece(state.board, state.active);
   const { board: clearedBoard, cleared } = clearLines(merged);
-  const scoreGain = scoreLines(cleared, state.level);
-  const totalLines = state.lines + cleared;
-  const level = computeLevel(totalLines);
+  const score = state.score + cleared;
+  const level = computeLevel(score);
 
   // Level up logic
   if (typeof localStorage !== "undefined") {
-    localStorage.setItem("puzzle-tetris-lines", totalLines.toString());
+    localStorage.setItem("puzzle-tetris-score", score.toString());
   }
 
   const [nextActive, nextQueue] = spawnPiece(state.queue);
@@ -136,8 +129,7 @@ const lockAndProceed = (state: GameState) => {
     board: clearedBoard,
     active: status === "over" ? null : nextActive,
     queue: nextQueue,
-    score: state.score + scoreGain,
-    lines: totalLines,
+    score,
     level,
     status,
     lockUntil: null,
@@ -149,18 +141,17 @@ export const createInitialState = (): GameState => {
   const [active, queue] = spawnPiece([]);
   const status: GameStatus = active && isValidPosition(board, active) ? "ready" : "over";
 
-  const savedLines =
-    typeof localStorage !== "undefined" ? localStorage.getItem("puzzle-tetris-lines") : null;
-  const lines = savedLines ? parseInt(savedLines, 10) : 0;
-  const level = computeLevel(lines);
+  const savedScore =
+    typeof localStorage !== "undefined" ? localStorage.getItem("puzzle-tetris-score") : null;
+  const score = savedScore ? parseInt(savedScore, 10) : 0;
+  const level = computeLevel(score);
 
   return {
     board,
     active,
     queue,
-    score: 0,
-    lines,
-    level: level,
+    score,
+    level,
     status,
     lockUntil: null,
   };
@@ -236,7 +227,6 @@ export const hardDrop = (state: GameState): GameState => {
   const landedState: GameState = {
     ...state,
     active: test,
-    score: state.score + distance,
     lockUntil: Date.now() + LOCK_GRACE_MS,
   };
   return landedState;
@@ -260,11 +250,11 @@ export const togglePause = (state: GameState): GameState => {
 
 export const restartGame = (): GameState => {
   const next = createInitialState();
-  next.lines = 0;
+  next.score = 0;
   next.level = 0;
 
   if (typeof localStorage !== "undefined") {
-    localStorage.setItem("puzzle-tetris-lines", "0");
+    localStorage.setItem("puzzle-tetris-score", "0");
   }
 
   return { ...next, status: "playing" };

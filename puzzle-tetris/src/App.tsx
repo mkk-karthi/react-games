@@ -34,7 +34,7 @@ export default function App() {
 
   useEffect(() => {
     const prev = lastSnapshot.current;
-    if (state.lines > prev.lines) soundBoard.play("lineClear");
+    if (state.score > prev.score) soundBoard.play("lineClear");
     if (state.level > prev.level) soundBoard.play("levelUp");
     if (state.status === "over" && prev.status !== "over") soundBoard.play("gameOver");
     lastSnapshot.current = state;
@@ -285,7 +285,7 @@ export default function App() {
           />
         </div>
         <div className="sm:col-span-1 lg:col-span-2 lg:row-span-2 lg:col-start-6 row-start-2 content-center">
-          <Hud score={state.score} level={state.level} lines={state.lines} />
+          <Hud score={state.score} level={state.level} />
         </div>
         <div className="sm:col-span-1 lg:col-span-2 lg:row-span-2 lg:col-start-6 lg:row-start-4 sm:row-start-2 content-center">
           <NextQueue pieces={nextPieces} />
