@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import type { Ball as BallType } from "../types/game";
 
 interface BallProps {
