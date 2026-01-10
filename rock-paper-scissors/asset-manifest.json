@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-games/rock-paper-scissors/static/css/main.247b8e0e.css",
-    "main.js": "/react-games/rock-paper-scissors/static/js/main.47085127.js",
+    "main.js": "/react-games/rock-paper-scissors/static/js/main.c0b793ce.js",
     "static/js/453.943ae0a4.chunk.js": "/react-games/rock-paper-scissors/static/js/453.943ae0a4.chunk.js",
     "static/media/success.mp3": "/react-games/rock-paper-scissors/static/media/success.fd2c2fea27379cbc44da.mp3",
     "static/media/fail.mp3": "/react-games/rock-paper-scissors/static/media/fail.9633cf62a3b34193e0c6.mp3",
@@ -9,15 +9,15 @@
     "static/media/pop-sound.mp3": "/react-games/rock-paper-scissors/static/media/pop-sound.6568d83a04dafec88749.mp3",
     "static/media/scissor.svg": "/react-games/rock-paper-scissors/static/media/scissor.34c22a78eaaaa7fb1f36a6c24b5f5386.svg",
     "static/media/paper.svg": "/react-games/rock-paper-scissors/static/media/paper.314832d88955add6caad9e6dfbd26c6f.svg",
-    "index.html": "/react-games/rock-paper-scissors/index.html",
     "static/media/audio.svg": "/react-games/rock-paper-scissors/static/media/audio.04785d311a6a824d030dca7ef9848529.svg",
+    "index.html": "/react-games/rock-paper-scissors/index.html",
     "static/media/audio-off.svg": "/react-games/rock-paper-scissors/static/media/audio-off.817ace358a5a4f325be480fda7e33148.svg",
     "main.247b8e0e.css.map": "/react-games/rock-paper-scissors/static/css/main.247b8e0e.css.map",
-    "main.47085127.js.map": "/react-games/rock-paper-scissors/static/js/main.47085127.js.map",
+    "main.c0b793ce.js.map": "/react-games/rock-paper-scissors/static/js/main.c0b793ce.js.map",
     "453.943ae0a4.chunk.js.map": "/react-games/rock-paper-scissors/static/js/453.943ae0a4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.247b8e0e.css",
-    "static/js/main.47085127.js"
+    "static/js/main.c0b793ce.js"
   ]
 }
