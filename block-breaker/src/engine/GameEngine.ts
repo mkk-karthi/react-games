@@ -50,7 +50,7 @@ export class GameEngine {
       blocks: [], // temporary
       score: 0,
       lives: 3,
-      level: level,
+      level,
       gameStatus: "idle",
       boardWidth,
       boardHeight,

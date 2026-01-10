@@ -6,6 +6,7 @@ import memoryMatching from "./assets/memory-cards-matching.png";
 import snakeGame from "./assets/snake-game.png";
 import TwoZeroFourEightGame from "./assets/2048-game.png";
 import puzzleTetris from "./assets/puzzle-tetris.png";
+import blockBreaker from "./assets/block-breaker.png";
 import useFaviconTheme from "./hooks/useFaviconTheme";
 
 export default function App() {
@@ -40,6 +41,11 @@ export default function App() {
       image: puzzleTetris,
       link: "puzzle-tetris",
     },
+    {
+      name: "Block Breaker",
+      image: blockBreaker,
+      link: "block-breaker",
+    },
   ];
 
   useFaviconTheme();
@@ -63,7 +69,7 @@ export default function App() {
         🎮 Mkk games 🎮
       </p> */}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {gamesList.map((game, key) => (
           <div
             className="max-w-xs glass border border-white/10 rounded-lg shadow-sm flex flex-col"

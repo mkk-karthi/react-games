@@ -15,7 +15,6 @@ All games are hosted together in a **single repository** — each game has its o
 - ✅ **Memory Card Game** – Flip and match cards to test your memory
 - ✅ **2048 Game (1024+ version)** – Keep merging tiles to reach the number 2048 and beyond
 - ✅ **Puzzle (Tetris) Game** – Rotate and place falling blocks to form complete lines
-
 - ✅ **Block Breaker** – Classic paddle-and-ball brick breaker with destructible bricks and power-ups
 
 ---
