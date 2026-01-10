@@ -14,8 +14,8 @@ export default function useFaviconTheme() {
 
     const updateFavicon = () => {
       favicon!.href = media.matches
-        ? `/android-chrome-192x192.png?v=${Date.now()}`
-        : `/android-chrome-dark-192x192.png?v=${Date.now()}`;
+        ? `android-chrome-192x192.png?v=${Date.now()}`
+        : `android-chrome-dark-192x192.png?v=${Date.now()}`;
     };
 
     updateFavicon();
