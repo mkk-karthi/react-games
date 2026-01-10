@@ -13,15 +13,22 @@ export class GameEngine {
 
   constructor(boardWidth: number, boardHeight: number) {
     this.soundManager = new SoundManager();
-    this.gameState = this.createInitialState(boardWidth, boardHeight);
+    const savedLevel =
+      typeof localStorage !== "undefined" ? localStorage.getItem("block-breaker-level") : null;
+    const initialLevel = savedLevel ? parseInt(savedLevel, 10) : 1;
+    this.gameState = this.createInitialState(boardWidth, boardHeight, initialLevel);
   }
 
-  private createInitialState(boardWidth: number, boardHeight: number): GameState {
+  private createInitialState(
+    boardWidth: number,
+    boardHeight: number,
+    level: number = 1
+  ): GameState {
     const paddleWidth = Math.min(120, boardWidth * 0.15);
     const paddleHeight = 12;
     const ballRadius = 8;
 
-    return {
+    const state: GameState = {
       ball: {
         position: {
           x: boardWidth / 2,
@@ -40,27 +47,30 @@ export class GameEngine {
         height: paddleHeight,
         speed: 8,
       },
-      blocks: this.createBlocks(boardWidth, boardHeight),
+      blocks: [], // temporary
       score: 0,
       lives: 3,
-      level: 1,
+      level: level,
       gameStatus: "idle",
       boardWidth,
       boardHeight,
       shake: 0,
     };
+
+    state.blocks = this.createBlocks(boardWidth, boardHeight, level);
+    return state;
   }
 
-  private createBlocks(boardWidth: number, _boardHeight: number): Block[] {
+  private createBlocks(boardWidth: number, _boardHeight: number, level: number): Block[] {
     const blocks: Block[] = [];
-    const rows = 6;
+    const rows = Math.min(level, 10);
     const cols = 10;
     const blockHeight = 25;
     const padding = 1;
     const totalPadding = (cols + 1) * padding + 10; // extra side padding
     const blockWidth = Math.floor((boardWidth - totalPadding) / cols);
     const offsetX = (boardWidth - (cols * blockWidth + (cols - 1) * padding)) / 2;
-    const offsetY = 20;
+    const offsetY = Math.max(120 - (level * 10), 20);
 
     const colors = [
       "#ff006e", // Pink
@@ -84,7 +94,7 @@ export class GameEngine {
           height: blockHeight,
           durability,
           maxDurability: durability,
-          color: colors[row],
+          color: colors[row%colors.length],
           points: durability * 10,
           isDestroyed: false,
         });
@@ -324,11 +334,31 @@ export class GameEngine {
   private victory() {
     this.gameState.gameStatus = "victory";
     this.soundManager.playSound("victory");
+
+    // Level up logic
+    const nextLevel = Math.min(this.gameState.level + 1, 10);
+    this.gameState.level = nextLevel;
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("block-breaker-level", nextLevel.toString());
+    }
+
     this.notifyStateChange();
   }
 
+  resetLevelProgress() {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("block-breaker-level", "1");
+    }
+    this.gameState.level = 1;
+    this.reset();
+  }
+
   reset() {
-    this.gameState = this.createInitialState(this.gameState.boardWidth, this.gameState.boardHeight);
+    this.gameState = this.createInitialState(
+      this.gameState.boardWidth,
+      this.gameState.boardHeight,
+      this.gameState.level
+    );
     this.ballAttachedToPaddle = true;
     this.notifyStateChange();
   }

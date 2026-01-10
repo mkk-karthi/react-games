@@ -6,6 +6,7 @@ interface GameUIProps {
   onPause: () => void;
   onResume: () => void;
   onToggleMute: () => void;
+  onResetLevel: () => void;
   isMuted: boolean;
 }
 
@@ -14,45 +15,48 @@ export const GameUI: React.FC<GameUIProps> = ({
   onPause,
   onResume,
   onToggleMute,
+  onResetLevel,
   isMuted,
 }) => {
   return (
-    <div className="p-4 flex justify-between items-center text-white z-10 game-element gap-2 lg:flex-col">
-      {/* Left side - Score and Lives */}
-      <div className="glass-effect min-w-[6rem] min-h-[4.5rem] py-2 rounded-lg text-center">
-        <div className="text-xs text-gray-400 uppercase tracking-wider">Score</div>
-        <div className="text-2xl font-bold text-glow text-neon-blue">{gameState.score}</div>
-      </div>
+    <div className="p-4 flex justify-between items-center text-white z-10 game-element gap-2 flex-col">
+      <div className="flex lg:flex-col gap-2">
+        {/* Left side - Score and Lives */}
+        <div className="glass-effect min-w-[6rem] min-h-[4.5rem] py-2 rounded-lg text-center">
+          <div className="text-xs text-gray-400 uppercase tracking-wider">Score</div>
+          <div className="text-2xl font-bold text-glow text-neon-blue">{gameState.score}</div>
+        </div>
 
-      <div className="glass-effect min-w-[6rem] min-h-[4.5rem] py-2 rounded-lg text-center">
-        <div className="text-xs text-gray-400 uppercase tracking-wider">Lives</div>
-        <div className="flex gap-1 py-3 justify-center">
-          {[...Array(3)].map((_, i) => (
-            <div
-              key={i}
-              className={`w-3 h-3 rounded-full ${
-                i < gameState.lives ? "bg-neon-pink shadow-lg" : "bg-gray-700"
-              }`}
-              style={{
-                boxShadow: i < gameState.lives ? "0 0 10px rgba(255, 0, 110, 0.8)" : "none",
-              }}
-            />
-          ))}
+        <div className="glass-effect min-w-[6rem] min-h-[4.5rem] py-2 rounded-lg text-center">
+          <div className="text-xs text-gray-400 uppercase tracking-wider">Lives</div>
+          <div className="flex gap-1 py-3 justify-center">
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className={`w-3 h-3 rounded-full ${
+                  i < gameState.lives ? "bg-neon-pink shadow-lg" : "bg-gray-700"
+                }`}
+                style={{
+                  boxShadow: i < gameState.lives ? "0 0 10px rgba(255, 0, 110, 0.8)" : "none",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Center - Level */}
+        <div className="glass-effect min-w-[6rem] min-h-[4.5rem] py-2 rounded-lg text-center">
+          <div className="text-xs text-gray-400 uppercase tracking-wider">Level</div>
+          <div className="text-2xl font-bold text-glow text-neon-purple">{gameState.level}</div>
         </div>
       </div>
 
-      {/* Center - Level */}
-      <div className="glass-effect min-w-[6rem] min-h-[4.5rem] py-2 rounded-lg text-center">
-        <div className="text-xs text-gray-400 uppercase tracking-wider">Level</div>
-        <div className="text-2xl font-bold text-glow text-neon-purple">{gameState.level}</div>
-      </div>
-
-      <div className="flex gap-2">
+      <div className="flex lg:flex-col gap-2">
         {/* Pause/Resume button */}
         {gameState.gameStatus === "playing" && (
           <button
             onClick={onPause}
-            className="glass-effect px-2 flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-blue"
+            className="glass-effect px-2 lg:px-0 lg:min-w-[6rem] flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-blue"
           >
             <svg className="w-8 h-8 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z" />
@@ -63,7 +67,7 @@ export const GameUI: React.FC<GameUIProps> = ({
         {gameState.gameStatus === "paused" && (
           <button
             onClick={onResume}
-            className="glass-effect px-2 flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-green"
+            className="glass-effect px-2 lg:px-0 lg:min-w-[6rem] flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-green"
           >
             <svg className="w-8 h-8 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M6 4l10 6-10 6V4z" />
@@ -71,10 +75,31 @@ export const GameUI: React.FC<GameUIProps> = ({
           </button>
         )}
 
+        {/* Reset Level button */}
+        <button
+          onClick={onResetLevel}
+          title="Reset Level Progress"
+          className="glass-effect px-2 lg:px-0 lg:min-w-[6rem] flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-pink"
+        >
+          <svg
+            className="w-8 h-8 sm:w-6 sm:h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
+          </svg>
+        </button>
+
         {/* Mute button */}
         <button
           onClick={onToggleMute}
-          className="glass-effect px-2 flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-yellow"
+          className="glass-effect px-2 lg:px-0 lg:min-w-[6rem] flex justify-center py-2 rounded-lg hover:bg-white/10 transition-all text-neon-yellow"
         >
           {isMuted ? (
             <svg className="w-8 h-8 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">

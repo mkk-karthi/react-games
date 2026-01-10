@@ -11,6 +11,8 @@ The game features a vibrant Neon/Retro aesthetic, smooth DOM-based 60fps renderi
 - 🎵 **Synthesized Audio**: Real-time musical sequences for 'Lose Life', 'Game Over', and 'Victory' using Web Audio API.
 - 🎬 **Dynamic Animations**: Block breaking effects, screen shake, and emoji particle explosions.
 - 📱 **Mobile First**: Optimized for both portrait and landscape modes with intuitive touch and swipe controls.
+- 📊 **Progress Persistence**: Automatically saves your current level to `localStorage`.
+- 📈 **Dynamic Difficulty**: 10 distinct levels where the number of rows equals the level (Level 10 = 10 rows).
 - ⚡ **High Performance**: Ref-based DOM rendering for butter-smooth 60fps gameplay.
 - ⌨️ **Keyboard Support**: Full arrow key and spacebar support for desktop players.
 

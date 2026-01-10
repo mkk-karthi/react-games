@@ -45,7 +45,6 @@ export const GameBoard: React.FC = () => {
 
   // Initialize game engine and input manager
   useEffect(() => {
-
     const updateBoardSize = () => {
       // Use window/viewport size for max constraints
       const padding = window.innerWidth < 640 ? 10 : 40;
@@ -260,6 +259,12 @@ export const GameBoard: React.FC = () => {
     }
   };
 
+  const handleResetLevel = () => {
+    if (engineRef.current && window.confirm("Are you sure you want to reset all level progress?")) {
+      engineRef.current.resetLevelProgress();
+    }
+  };
+
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen text-red-500 font-cyber">
@@ -282,6 +287,7 @@ export const GameBoard: React.FC = () => {
             onPause={handlePause}
             onResume={handleResume}
             onToggleMute={handleToggleMute}
+            onResetLevel={handleResetLevel}
             isMuted={isMuted}
           />
         ) : (

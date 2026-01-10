@@ -36,7 +36,7 @@ export const GameOverScreen: React.FC<GameOverScreenProps> = ({ score, isVictory
           onClick={onRestart}
           className="px-4 py-2 rounded-lg font-bold text-lg neon-border border-neon-green text-neon-green hover:bg-neon-green/20 transition-all transform hover:scale-105"
         >
-          Play Again
+          {isVictory ? "Next Level" : "Play Again" }
         </button>
       </div>
     </div>
