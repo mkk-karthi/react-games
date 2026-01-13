@@ -7,7 +7,6 @@ import snakeGame from "./assets/snake-game.png";
 import TwoZeroFourEightGame from "./assets/2048-game.png";
 import puzzleTetris from "./assets/puzzle-tetris.png";
 import blockBreaker from "./assets/block-breaker.png";
-import useFaviconTheme from "./hooks/useFaviconTheme";
 
 export default function App() {
   const gamesList = [
@@ -47,8 +46,6 @@ export default function App() {
       link: "block-breaker",
     },
   ];
-
-  useFaviconTheme();
 
   return (
     <div

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import "./App.scss";
 import "./Button.scss";
-import useFaviconTheme from "./useFaviconTheme";
 
 function App() {
   const noRows = 3;
@@ -198,8 +197,6 @@ function App() {
     floorheight: 1600,
     floorwidth: 1600,
   };
-
-  useFaviconTheme();
 
   return (
     <>

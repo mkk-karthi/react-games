@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import Tiles from "./components/Tiles";
 import MobileSwiper from "./components/MobileSwiper";
-import useFaviconTheme from "./hooks/useFaviconTheme";
 
 function App() {
   const noRows = 4;
@@ -285,8 +284,6 @@ function App() {
     },
     [updateTiles]
   );
-
-  useFaviconTheme();
 
   return (
     <>

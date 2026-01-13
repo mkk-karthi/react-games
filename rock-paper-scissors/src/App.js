@@ -13,7 +13,6 @@ import { ReactComponent as AudioOffSvg } from "./assets/audio-off.svg";
 import popSound from "./assets/pop-sound.mp3";
 import successSound from "./assets/success.mp3";
 import failSound from "./assets/fail.mp3";
-import useFaviconTheme from "./components/useFaviconTheme";
 
 function App() {
   // 1-Rock, 2-Paper, 3-Scissor
@@ -105,7 +104,6 @@ function App() {
     floorwidth: 1600,
   };
 
-  useFaviconTheme();
   return (
     <>
       <div className="relative p-4 min-h-screen flex justify-center place-items-center flex-col">
