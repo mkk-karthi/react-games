@@ -85,7 +85,17 @@ export class InputManager {
   };
 
   private handleTouchStart = (e: TouchEvent) => {
-    e.preventDefault();
+    // Only prevent default if we are NOT touching a button or interactive element
+    const target = e.target as HTMLElement;
+    const isUIElement =
+      target.closest("button") || target.closest("a") || target.closest(".game-ui-no-prevent");
+
+    if (!isUIElement) {
+      e.preventDefault();
+    } else {
+      return;
+    }
+
     if (!this.element || e.touches.length === 0) return;
 
     const rect = this.element.getBoundingClientRect();
@@ -103,7 +113,17 @@ export class InputManager {
   };
 
   private handleTouchMove = (e: TouchEvent) => {
-    e.preventDefault();
+    // Only prevent default if we are NOT touching a button or interactive element
+    const target = e.target as HTMLElement;
+    const isUIElement =
+      target.closest("button") || target.closest("a") || target.closest(".game-ui-no-prevent");
+
+    if (!isUIElement) {
+      e.preventDefault();
+    } else {
+      return;
+    }
+
     if (!this.element || e.touches.length === 0) return;
 
     const rect = this.element.getBoundingClientRect();
@@ -113,7 +133,15 @@ export class InputManager {
   };
 
   private handleTouchEnd = (e: TouchEvent) => {
-    e.preventDefault();
+    const target = e.target as HTMLElement;
+    const isUIElement =
+      target.closest("button") || target.closest("a") || target.closest(".game-ui-no-prevent");
+
+    if (!isUIElement) {
+      e.preventDefault();
+    } else {
+      return;
+    }
     this.inputState.touchActive = false;
     this.notifyListeners();
   };

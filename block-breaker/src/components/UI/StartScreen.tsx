@@ -7,8 +7,8 @@ interface StartScreenProps {
 
 export const StartScreen: React.FC<StartScreenProps> = ({ onStart, inputMethod }) => {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-20 game-element">
-      <div className="glass-effect p-8 rounded-2xl max-w-md mx-4 text-center">
+    <div className="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-20 game-element game-ui-no-prevent">
+      <div className="glass-effect p-4 sm:p-8 rounded-2xl max-w-md mx-4 text-center">
         <h1 className="text-4xl font-bold mb-4 text-glow bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue bg-clip-text text-transparent">
           Block Breaker
         </h1>

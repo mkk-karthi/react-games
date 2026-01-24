@@ -70,7 +70,7 @@ export class GameEngine {
     const totalPadding = (cols + 1) * padding + 10; // extra side padding
     const blockWidth = Math.floor((boardWidth - totalPadding) / cols);
     const offsetX = (boardWidth - (cols * blockWidth + (cols - 1) * padding)) / 2;
-    const offsetY = Math.max(120 - (level * 10), 20);
+    const offsetY = Math.max(120 - level * 10, 20);
 
     const colors = [
       "#ff006e", // Pink
@@ -94,7 +94,7 @@ export class GameEngine {
           height: blockHeight,
           durability,
           maxDurability: durability,
-          color: colors[row%colors.length],
+          color: colors[row % colors.length],
           points: durability * 10,
           isDestroyed: false,
         });
@@ -184,9 +184,10 @@ export class GameEngine {
       }
     }
 
-    // Update ball position
-    this.gameState.ball.position.x += this.gameState.ball.velocity.x;
-    this.gameState.ball.position.y += this.gameState.ball.velocity.y;
+    // Update ball position (Frame-rate independent)
+    const timeScale = dt * 60; // Normalize to 60fps baseline
+    this.gameState.ball.position.x += this.gameState.ball.velocity.x * timeScale;
+    this.gameState.ball.position.y += this.gameState.ball.velocity.y * timeScale;
 
     // Wall collisions
     const { ball, boardWidth, boardHeight } = this.gameState;
@@ -350,7 +351,6 @@ export class GameEngine {
       localStorage.setItem("block-breaker-level", "1");
     }
     this.gameState.level = 1;
-    this.reset();
   }
 
   reset() {
