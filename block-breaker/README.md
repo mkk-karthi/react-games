@@ -41,6 +41,8 @@ The game features a vibrant Neon/Retro aesthetic, smooth DOM-based 60fps renderi
 - 👆 Touch & Drag – Move paddle
 - 📲 Tap – Launch ball / Start game
 
+---
+
 ## 📸 Screenshot
 
 <p align="center">
