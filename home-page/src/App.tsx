@@ -1,12 +1,12 @@
 // import { useEffect, useMemo, useRef } from "react";
 
 import ticTacToe from "./assets/tic-tac-toe.png";
-import rockPaperScissors from "./assets/rock-paper-scissors.png";
-import memoryMatching from "./assets/memory-cards-matching.png";
-import snakeGame from "./assets/snake-game.png";
-import TwoZeroFourEightGame from "./assets/2048-game.png";
+import memoryMatching from "./assets/memory-cards-matching.jpg";
+import snakeGame from "./assets/snake-game.jpg";
+import TwoZeroFourEightGame from "./assets/2048-game.jpg";
 import puzzleTetris from "./assets/puzzle-tetris.png";
-import blockBreaker from "./assets/block-breaker.png";
+import blockBreaker from "./assets/block-breaker.jpg";
+import candyCrush from "./assets/candy-crush.jpg";
 
 export default function App() {
   const gamesList = [
@@ -14,11 +14,6 @@ export default function App() {
       name: "Tic Tac Toe",
       image: ticTacToe,
       link: "tic-tac-toe",
-    },
-    {
-      name: "Rock Paper Scissors",
-      image: rockPaperScissors,
-      link: "rock-paper-scissors",
     },
     {
       name: "Memory: Cards Matching",
@@ -44,6 +39,11 @@ export default function App() {
       name: "Block Breaker",
       image: blockBreaker,
       link: "block-breaker",
+    },
+    {
+      name: "Candy Crush",
+      image: candyCrush,
+      link: "candy-crush",
     },
   ];
 
