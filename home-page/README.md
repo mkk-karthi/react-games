@@ -3,7 +3,7 @@
 A collection of fun and interactive games built with **React**.  
 All games are hosted together in a **single repository** — each game has its own project folder.
 
-🌐 **Play Here:** [React Games Live Demo](https://mkk-karthi.github.io/react-games/)
+🌐 **Play Here:** [React Games Live Demo](https://games.mkkcreation.com/)
 
 ---
 

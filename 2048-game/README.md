@@ -2,7 +2,7 @@
 
 A beautifully animated **2048 Puzzle Game** built using **React** and **Tailwind CSS**, featuring a classic **wooden board design**, **smooth animations**, and **persistent high score tracking**.
 
-🎮 **Play Now:** [2048 Game Live Demo](https://mkk-karthi.github.io/react-games/2048-game)
+🎮 **Play Now:** [2048 Game Live Demo](https://games.mkkcreation.com/2048-game)
 
 ---
 

@@ -5,5 +5,5 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: process.env.NODE_ENV === "production" ? "/react-games/2048-game/" : "/",
+  base: process.env.NODE_ENV === "production" ? "/2048-game/" : "/",
 })
