@@ -1,9 +1,16 @@
-*/package-lock.json
-*/node_modules
 */build
 */dist
-*/coverage
 */.vite
+*/node_modules
+*/coverage
 /temp-deploy
 
 deploy.sh
+.DS_Store
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

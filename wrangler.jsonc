@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "react-games",
+  "compatibility_date": "2026-04-12",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "2048-game"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
