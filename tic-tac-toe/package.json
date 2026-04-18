@@ -6,7 +6,6 @@
     "react": "^19.1.1",
     "react-confetti-explosion": "^3.0.3",
     "react-dom": "^19.1.1",
-    "react-scripts": "5.0.1",
     "sass": "^1.90.0",
     "web-vitals": "^2.1.4"
   },
@@ -33,5 +32,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://games.mkkcreation.com/tic-tac-toe"
+  "homepage": "https://games.mkkcreation.com/tic-tac-toe",
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  }
 }

@@ -1,7 +1,50 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import "./App.scss";
 import "./Button.scss";
+
+const winningPatterns = [
+  [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ],
+  [
+    [1, 0],
+    [1, 1],
+    [1, 2],
+  ],
+  [
+    [2, 0],
+    [2, 1],
+    [2, 2],
+  ],
+  [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+  ],
+  [
+    [0, 1],
+    [1, 1],
+    [2, 1],
+  ],
+  [
+    [0, 2],
+    [1, 2],
+    [2, 2],
+  ],
+  [
+    [0, 0],
+    [1, 1],
+    [2, 2],
+  ],
+  [
+    [0, 2],
+    [1, 1],
+    [2, 0],
+  ],
+];
 
 function App() {
   const noRows = 3;
@@ -27,35 +70,22 @@ function App() {
   const [mode, setMode] = useState(0);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    const winner = checkWinner([...boardData]);
-    if (winner !== null) {
+  const removeHistory = useCallback(
+    (tempHistory) => {
+      let last = tempHistory.shift();
+      setHistory(tempHistory);
+
+      let tempData = [...boardData];
+      tempData[last.x][last.y] = null;
+      setBoardData(tempData);
       setTimeout(() => {
-        setWinner(winner);
-        setGameOver(true);
-      }, 500);
-    } else if (mode !== 2 && tern === 1) {
-      computerMove();
-    }
-  }, [tern]);
-
-  useEffect(() => {
-    restart();
-  }, [mode]);
-
-  const removeHistory = (tempHistory) => {
-    let last = tempHistory.shift();
-    setHistory(tempHistory);
-
-    let tempData = [...boardData];
-    tempData[last.x][last.y] = null;
-    setBoardData(tempData);
-    setTimeout(() => {
-      if (tempHistory.length >= 6) {
-        removeHistory(tempHistory);
-      }
-    }, 100);
-  };
+        if (tempHistory.length >= 6) {
+          removeHistory(tempHistory);
+        }
+      }, 100);
+    },
+    [boardData],
+  );
 
   const handleClick = (x, y) => {
     if (((mode !== 2 && tern === 0) || mode === 2) && !gameOver) {
@@ -67,7 +97,27 @@ function App() {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const computerMove = () => {
+  const makeMove = useCallback(
+    (x, y) => {
+      const newBoard = [...boardData];
+      if (newBoard[x][y] === null) {
+        let tempHistory = [...history];
+        tempHistory.push({ x, y, tern });
+        setHistory(tempHistory);
+
+        newBoard[x][y] = tern;
+        setBoardData(newBoard);
+        setTern(tern ? 0 : 1);
+
+        if (tempHistory.length >= 6) {
+          removeHistory([...tempHistory]);
+        }
+      }
+    },
+    [boardData, tern, history, removeHistory],
+  );
+
+  const computerMove = useCallback(() => {
     const board = structuredClone(boardData);
 
     if (mode === 1) {
@@ -135,60 +185,49 @@ function App() {
         }
       }
     }
-  };
-
-  const makeMove = (x, y) => {
-    const newBoard = [...boardData];
-    if (newBoard[x][y] === null) {
-      let tempHistory = [...history];
-      tempHistory.push({ x, y, tern });
-      setHistory(tempHistory);
-
-      newBoard[x][y] = tern;
-      setBoardData(newBoard);
-      setTern(tern ? 0 : 1);
-
-      if (tempHistory.length >= 6) {
-        removeHistory([...tempHistory]);
-      }
-    }
-  };
+  }, [boardData, makeMove, mode, tern]);
 
   const checkWinner = (board) => {
-    let winningPatterns = [
-      [[0, 0], [0, 1], [0, 2]],
-      [[1, 0], [1, 1], [1, 2]],
-      [[0, 0], [0, 1], [0, 2]],
-      [[0, 0], [1, 0], [2, 0]],
-      [[0, 1], [1, 1], [2, 1]],
-      [[0, 2], [1, 2], [2, 2]],
-      [[0, 0], [1, 1], [2, 2]],
-      [[0, 2], [1, 1], [2, 0]],
-    ];
+    if (!board.length) return null;
 
-    if (board.length > 0) {
-      let players = [0, 1];
-      for (let player of players) {
-        for (let val of winningPatterns) {
-          let status = true;
-          for (let [x, y] of val) {
-            status = status && board[x][y] === player;
-          }
-          if (status) return player;
+    for (const player of [0, 1]) {
+      for (const pattern of winningPatterns) {
+        if (pattern.every(([x, y]) => board[x][y] === player)) {
+          return player;
         }
       }
-      if (board.every((row) => row.every((col) => col !== null))) return 2;
     }
-    return null;
+
+    return board.every((row) => row.every((col) => col !== null)) ? 2 : null;
   };
 
-  const restart = () => {
+  const restart = useCallback(() => {
     setWinner(null);
     setGameOver(false);
     setBoardData(initialData);
     setTern(0);
     setHistory([]);
-  };
+  }, [initialData]);
+
+  useEffect(() => {
+    restart();
+  }, [mode]);
+
+  useEffect(() => {
+    const winner = checkWinner(boardData);
+
+    if (winner !== null) {
+      const timeoutId = setTimeout(() => {
+        setWinner(winner);
+        setGameOver(true);
+      }, 500);
+      return () => clearTimeout(timeoutId);
+    }
+
+    if (mode !== 2 && tern === 1) {
+      computerMove();
+    }
+  }, [tern, boardData, mode, computerMove]);
 
   const confettiProps = {
     force: 0.6,
