@@ -7,6 +7,7 @@ import TwoZeroFourEightGame from "./assets/2048-game.jpg";
 import puzzleTetris from "./assets/puzzle-tetris.png";
 import blockBreaker from "./assets/block-breaker.jpg";
 import candyCrush from "./assets/candy-crush.jpg";
+import flappyBird from "./assets/flappy-bird.png";
 
 export default function App() {
   const gamesList = [
@@ -44,6 +45,11 @@ export default function App() {
       name: "Candy Crush",
       image: candyCrush,
       link: "candy-crush",
+    },
+    {
+      name: "Flappy Bird",
+      image: flappyBird,
+      link: "flappy-bird",
     },
   ];
 
