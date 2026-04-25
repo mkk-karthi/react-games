@@ -32,7 +32,8 @@ A modernized version of the classic Flappy Bird game built with React, TypeScrip
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/flappy-bird.git
+   git clone https://github.com/mkk-karthi/react-games.git
+   cd react-games/flappy-bird
    ```
 
 2. Install dependencies:
@@ -70,4 +71,10 @@ A modernized version of the classic Flappy Bird game built with React, TypeScrip
 
 ---
 
-Built with ❤️ by MKK
+## ⭐ Support
+
+If you like this project, consider giving it a **star ⭐** on GitHub!
+
+---
+
+👨‍💻 Developed by **MKK Karthi**
