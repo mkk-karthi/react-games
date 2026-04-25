@@ -1,4 +1,3 @@
-import React from "react";
 import { ScoreBoard } from "./ScoreBoard";
 import { PixelBtn } from "./PixelBtn";
 import { LEVELS, type LevelId } from "../levels";

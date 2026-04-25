@@ -1,4 +1,3 @@
-import React from "react";
 import { PixelBtn } from "./PixelBtn";
 import Volume from "../../assets/volume-full.svg";
 import Muted from "../../assets/volume-muted.svg";

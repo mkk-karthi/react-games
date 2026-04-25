@@ -1,5 +1,3 @@
-import React from "react";
-
 interface HUDProps {
   score: number;
   best: number;
