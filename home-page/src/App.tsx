@@ -110,7 +110,7 @@ export default function App() {
                 target="_blank"
                 className="text-white font-medium rounded-lg text-sm px-6 py-2 text-center bg-blue-600 hover:bg-blue-700"
               >
-                {game.link == "#" ? "Comming soon" : "Play Now"}
+                {game.link == "#" ? "Coming Soon" : "Play Now"}
               </a>
             </div>
           </div>
