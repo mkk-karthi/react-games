@@ -8,6 +8,8 @@ import puzzleTetris from "./assets/puzzle-tetris.png";
 import blockBreaker from "./assets/block-breaker.jpg";
 import candyCrush from "./assets/candy-crush.jpg";
 import flappyBird from "./assets/flappy-bird.png";
+import bullseyeArchery from "./assets/bullseye-archery.png";
+import chess from "./assets/chess.png";
 
 export default function App() {
   const gamesList = [
@@ -51,6 +53,16 @@ export default function App() {
       image: flappyBird,
       link: "flappy-bird",
     },
+    {
+      name: "Bullseye Archery",
+      image: bullseyeArchery,
+      link: "bullseye-archery",
+    },
+    {
+      name: "Chess",
+      image: chess,
+      link: "#",
+    },
   ];
 
   return (
@@ -75,12 +87,12 @@ export default function App() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {gamesList.map((game, key) => (
           <div
-            className="max-w-xs glass border border-white/10 rounded-lg shadow-sm flex flex-col"
+            className="max-w-xs glass border border-white/10 rounded-lg shadow-sm flex flex-col justify-center"
             key={key}
           >
-            <a href={game.link} target="_blank">
+            <a href={game.link} target="_blank" className="flex justify-center my-2">
               <img
-                className="m-[5%] rounded-lg w-[90%] border border-white/10"
+                className="rounded-lg w-[90%] border border-white/10 aspect-square object-cover"
                 src={game.image}
                 alt={game.name}
               />
@@ -92,13 +104,13 @@ export default function App() {
                 </h5>
               </a>
             </div>
-            <div className="text-center mt-auto p-3">
+            <div className="text-center mt-auto p-2 my-2">
               <a
                 href={game.link}
                 target="_blank"
                 className="text-white font-medium rounded-lg text-sm px-6 py-2 text-center bg-blue-600 hover:bg-blue-700"
               >
-                Play Now
+                {game.link == "#" ? "Comming soon" : "Play Now"}
               </a>
             </div>
           </div>
