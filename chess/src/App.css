@@ -1,0 +1,274 @@
+/*
+ * App.css — Complex multi-stop gradients only.
+ * Colors reference the 34-token palette from styles.css.
+ * Inline rgba() values are annotated with their palette origin.
+ * All layout, spacing, responsive, animations, hover, and disabled states
+ * live in component files as Tailwind classes.
+ */
+
+/* ─── Game room ──────────────────────────────────────────────────────────── */
+.game-room {
+  background:
+    radial-gradient(
+      circle at 50% 8%,
+      rgba(255,236,178,0.90),          /* wood-50  @90% */
+      rgba(185,118,55,0.55) 27%,       /* wood-400 @55% */
+      transparent 48%
+    ),
+    radial-gradient(circle at 12% 82%, rgba(65,105,54,0.20), transparent 28%), /* forest-500 @20% */
+    linear-gradient(135deg, var(--color-wood-400) 0%, var(--color-wood-500) 45%, var(--color-wood-800) 100%);
+}
+
+/* Texture overlay */
+.game-room::before {
+  background:
+    repeating-linear-gradient(
+      88deg,
+      rgba(255,232,168,0.08) 0 9px,   /* wood-50  @8%  */
+      rgba(59,28,11,0.10) 10px 18px   /* wood-700 @10% */
+    ),
+    repeating-radial-gradient(
+      ellipse at 50% 45%,
+      transparent 0 34px,
+      rgba(42,20,7,0.09) 35px 38px    /* wood-900 @9%  */
+    );
+}
+
+/* ─── Panel card ─────────────────────────────────────────────────────────── */
+.panel {
+  border: 1px solid rgba(255,236,188,0.42);  /* wood-50 warm @42% */
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,224,157,0.82), rgba(124,70,31,0.82)),  /* wood-100→wood-450 @82% */
+    repeating-linear-gradient(
+      92deg,
+      rgba(73,35,13,0.20) 0 7px,       /* wood-600 @20% */
+      rgba(255,229,166,0.18) 8px 14px  /* wood-50  @18% */
+    );
+  box-shadow:
+    0 18px 38px rgba(35,16,5,0.32),     /* wood-900 @32% */
+    inset 0 2px 0 rgba(255,255,255,0.35),
+    inset 0 -8px 18px rgba(58,27,9,0.24);  /* wood-700 @24% */
+}
+
+/* ─── Board ──────────────────────────────────────────────────────────────── */
+.board-wrap {
+  background:
+    linear-gradient(135deg, rgba(255,225,154,0.88), rgba(94,47,18,0.90)),    /* wood-100→dark @88/90% */
+    repeating-linear-gradient(
+      88deg,
+      var(--color-wood-350) 0 13px,    /* grain mid-amber  */
+      var(--color-wood-500) 14px 23px, /* grain dark wood  */
+      var(--color-wood-200) 24px 34px, /* grain golden     */
+      var(--color-wood-600) 35px 48px  /* grain very dark  */
+    );
+  box-shadow:
+    0 28px 42px rgba(22,9,3,0.48),       /* wood-900 @48% */
+    0 6px 0 rgba(62,28,10,0.42),         /* wood-700 @42% */
+    inset 0 3px 0 rgba(255,255,255,0.35),
+    inset 0 -12px 22px rgba(55,24,7,0.28); /* wood-700 @28% */
+  transform: rotateX(14deg) rotateZ(-0.45deg) translateY(-2px);
+  transform-style: preserve-3d;
+}
+
+.board-wrap::before {
+  border-color: rgba(255,224,154,0.32);    /* wood-100 @32% */
+  pointer-events: none;
+  box-shadow: inset 0 0 0 7px rgba(56,25,8,0.16);  /* wood-700 @16% */
+}
+
+/* ─── Squares ────────────────────────────────────────────────────────────── */
+.square-light,
+.square-dark {
+  width: 12.5%;
+  height: 12.5%;
+}
+
+.square-light::before,
+.square-dark::before {
+  border-top:    1px solid rgba(255,255,255,0.10);
+  border-left:   1px solid rgba(255,255,255,0.08);
+  border-right:  1px solid rgba(38,18,7,0.14);   /* wood-700 @14% */
+  border-bottom: 1px solid rgba(38,18,7,0.18);   /* wood-700 @18% */
+}
+
+.square-light {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,0.24), transparent 22%),
+    repeating-linear-gradient(
+      92deg,
+      rgba(255,239,187,0.12) 0 7px,   /* wood-50 @12% */
+      rgba(110,58,20,0.09) 8px 13px   /* wood-450 @9% */
+    ),
+    linear-gradient(135deg, var(--color-wood-200), var(--color-wood-400) 72%);
+}
+
+.square-dark {
+  background:
+    radial-gradient(circle at 72% 76%, rgba(255,220,145,0.13), transparent 20%), /* wood-100 @13% */
+    repeating-linear-gradient(
+      92deg,
+      rgba(255,225,154,0.08) 0 6px,   /* wood-100 @8% */
+      rgba(40,17,6,0.10) 7px 12px     /* wood-900 @10% */
+    ),
+    linear-gradient(135deg, var(--color-wood-450), var(--color-wood-600) 78%);
+}
+
+.last-move::after {
+  content: "";
+  inset: 8%;
+  background: var(--color-last-move);
+  animation: floatGlow 3.4s ease-in-out infinite;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.mode-button,
+.mode-card,
+.wood-button,
+.icon-button,
+.start-button {
+  border: 1px solid rgba(65,31,10,0.48);  /* wood-600 @48% */
+  color: var(--color-text-btn);
+}
+
+.wood-button,
+.mode-button {
+  background: linear-gradient(180deg, var(--color-wood-400) 0%, var(--color-wood-500) 54%, var(--color-wood-600) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.26),
+    inset 0 -4px 0 rgba(52,23,8,0.24),   /* wood-700 @24% */
+    0 7px 14px rgba(43,20,7,0.25);        /* wood-700 @25% */
+}
+
+.icon-button {
+  background: linear-gradient(180deg, var(--color-wood-200) 0%, var(--color-wood-350) 56%, var(--color-wood-450) 100%);
+  color: var(--color-wood-700);
+}
+
+.mode-button.active,
+.mode-card.active {
+  background: linear-gradient(180deg, var(--color-forest-400) 0%, var(--color-forest-500) 100%);
+  color: var(--color-wood-50);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.22),
+    0 8px 18px rgba(25,55,26,0.28);       /* forest-dark @28% */
+}
+
+.mode-card {
+  background: linear-gradient(180deg, var(--color-wood-400) 0%, #6c3515 100%);  /* unique mid-dark brown */
+}
+
+.start-button {
+  background: linear-gradient(180deg, var(--color-forest-400) 0%, var(--color-forest-600) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.24),
+    0 10px 22px rgba(31,67,33,0.26);       /* forest-dark @26% */
+}
+
+/* ─── Score icon dots ────────────────────────────────────────────────────── */
+.score-icon-dot.white-dot {
+  background: linear-gradient(135deg, var(--color-wood-50) 0%, var(--color-wood-300) 50%, var(--color-wood-450) 100%);
+}
+
+.score-icon-dot.black-dot {
+  background: linear-gradient(135deg, var(--color-wood-450) 0%, var(--color-wood-800) 50%, var(--color-wood-900) 100%);
+}
+
+.score-icon-dot.draw-dot {
+  background: linear-gradient(135deg, var(--color-wood-300) 0%, var(--color-wood-500) 50%, var(--color-wood-800) 100%);
+}
+
+/* ─── Wood card ──────────────────────────────────────────────────────────── */
+.wood-card {
+  border: 1px solid rgba(255,235,182,0.55);   /* wood-50 warm @55% */
+  background:
+    linear-gradient(145deg, rgba(255,218,143,0.96), rgba(122,65,27,0.96)),   /* wood-100→wood-500 @96% */
+    repeating-linear-gradient(
+      90deg,
+      rgba(78,37,13,0.18) 0 9px,    /* wood-600 @18% */
+      rgba(255,238,186,0.14) 10px 18px  /* wood-50 @14% */
+    );
+  box-shadow:
+    0 4px 0 var(--color-wood-700),
+    0 20px 40px rgba(24,10,3,0.36),        /* wood-900 @36% */
+    inset 0 2px 0 rgba(255,255,255,0.38),
+    inset 0 -12px 22px rgba(55,24,7,0.26); /* wood-700 @26% */
+  transform-style: preserve-3d;
+}
+
+/* ─── Utility classes (moved from Tailwind arbitrary values) ─────────────── */
+.inner-tray {
+  background-color: rgba(59,29,11,0.16);    /* wood-700 @16% */
+  border: 1px solid rgba(71,37,16,0.22);    /* wood-600 @22% */
+  box-shadow: inset 0 1px 6px rgba(55,25,8,0.14);  /* wood-700 @14% */
+}
+
+.score-icon-dot {
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.40),
+    0 1px 2px rgba(0,0,0,0.30);
+  border: 1px solid rgba(43,22,9,0.40);   /* wood-700 @40% */
+}
+
+.board-container {
+  perspective: 950px;
+  perspective-origin: 50% 20%;
+}
+
+.board-grid {
+  border: 2px solid rgba(44,21,8,0.86);     /* wood-700 @86% */
+  box-shadow:
+    inset 0 0 0 4px rgba(255,236,178,0.22),  /* wood-50 @22% */
+    inset 0 22px 28px rgba(255,235,170,0.16),/* wood-50 @16% */
+    inset 0 -22px 30px rgba(42,19,7,0.22);   /* wood-900 @22% */
+}
+
+.selected-square {
+  box-shadow: inset 0 0 0 4px var(--color-selected);
+}
+
+.move-target-dot {
+  background-color: var(--color-move-dot);
+  box-shadow: 0 0 0 6px var(--color-move-dot-ring);
+  animation: targetDotIn 220ms cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  transition: all 180ms ease-in-out;
+}
+
+.legal-target-square:hover .move-target-dot {
+  transform: scale(1.35);
+  background-color: var(--color-forest-400);
+  box-shadow: 0 0 0 8px rgba(63, 124, 72, 0.35);
+}
+
+.check-glow-square::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, transparent 85%);
+  animation: checkPulse 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.overlay-container {
+  background: radial-gradient(
+    circle,
+    rgba(255,231,166,0.12),  /* wood-50 @12% */
+    rgba(35,15,5,0.36)       /* wood-900 @36% */
+  );
+}
+
+.chess-piece-svg {
+  z-index: 5;
+  filter:
+    drop-shadow(0 13px 8px var(--color-piece-shadow))
+    drop-shadow(0 2px 0 var(--color-piece-highlight));
+}
+
+.badge {
+  background-color: var(--color-badge);
+}
+
+.panel-label {
+  letter-spacing: 0.08em;
+}
