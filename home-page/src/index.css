@@ -1,10 +1,181 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+@layer base {
+  :root {
+    color-scheme: dark;
+    --font-sans: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: "Share Tech Mono", "Courier New", Courier, monospace;
+  }
+  
+  body {
+    background-color: var(--color-midnight);
+    color: var(--color-gray-100);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}
 
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  /* border: 1px solid rgba(255, 255, 255, 0.05); */
-  backdrop-filter: blur(8px);
+@theme {
+  --color-midnight: #05081A;
+  --color-cyber-bg: #0A0C1E;
+  --color-cyber-dark: color-mix(in srgb, var(--color-cyber-bg) 70%, transparent);
+  --color-scanline-dark: #121010;
+  
+  --animate-grid-scroll: grid-scroll 24s linear infinite;
+  --animate-shimmer: shimmer 3s infinite linear;
+  --animate-float-slow: float-slow 6s infinite ease-in-out;
+  --animate-glitch: glitch 1s infinite alternate;
+  
+  @keyframes grid-scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+  }
+  @keyframes glitch {
+    0% { text-shadow: 1px 1px 0px var(--color-pink-500), -1px -1px 0px var(--color-cyan-400); }
+    100% { text-shadow: -1px 1px 0px var(--color-pink-500), 1px -1px 0px var(--color-cyan-400); }
+  }
+}
+
+/* Neon Glow utilities */
+.shadow-neon-pink {
+  box-shadow: 
+    0 0 10px color-mix(in srgb, var(--color-pink-500) 40%, transparent),
+    0 0 25px color-mix(in srgb, var(--color-pink-500) 15%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--color-pink-500) 20%, transparent);
+}
+
+.shadow-neon-purple {
+  box-shadow: 
+    0 0 10px color-mix(in srgb, var(--color-purple-500) 40%, transparent),
+    0 0 25px color-mix(in srgb, var(--color-purple-500) 15%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--color-purple-500) 20%, transparent);
+}
+
+/* Custom shadow/glow configurations */
+.shadow-pink-glow-sm {
+  box-shadow: 0 0 4px var(--color-pink-500);
+}
+
+.shadow-pink-glow-md {
+  box-shadow: 0 0 10px var(--color-pink-500);
+}
+
+.shadow-cyan-glow-sm {
+  box-shadow: 0 0 4px var(--color-cyan-400);
+}
+
+.shadow-cyan-glow-md {
+  box-shadow: 0 0 6px var(--color-cyan-400);
+}
+
+.shadow-purple-glow-md {
+  box-shadow: 0 0 6px var(--color-purple-500);
+}
+
+/* Button & Pill shadows */
+.shadow-btn-pink {
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--color-pink-500) 30%, transparent);
+}
+
+.shadow-btn-spotlight {
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--color-pink-500) 35%, transparent);
+}
+
+.shadow-pill-cyan {
+  box-shadow: 0 0 6px color-mix(in srgb, var(--color-cyan-400) 20%, transparent);
+}
+
+.shadow-pill-pink {
+  box-shadow: 0 0 6px color-mix(in srgb, var(--color-pink-500) 20%, transparent);
+}
+
+/* Text Drop Shadows */
+.drop-shadow-neon-pink {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-pink-500) 45%, transparent));
+}
+
+/* 80s Wireframe Grid */
+.wireframe-grid {
+  background-image: 
+    linear-gradient(color-mix(in srgb, var(--color-indigo-500) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-indigo-500) 8%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* CRT Scanlines Overlay */
+.scanlines {
+  position: relative;
+}
+
+.scanlines::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(color-mix(in srgb, var(--color-scanline-dark) 0%, transparent) 50%, color-mix(in srgb, var(--color-black) 25%, transparent) 50%), linear-gradient(90deg, color-mix(in srgb, var(--color-red-600) 6%, transparent), color-mix(in srgb, var(--color-green-500) 2%, transparent), color-mix(in srgb, var(--color-blue-600) 6%, transparent));
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  z-index: 15;
+  border-radius: inherit;
+}
+
+/* Glassmorphism Cyber Card */
+.cyber-card {
+  background: color-mix(in srgb, var(--color-cyber-bg) 75%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-purple-500) 20%, transparent);
+  box-shadow: 
+    0 10px 30px color-mix(in srgb, var(--color-black) 60%, transparent),
+    inset 0 1px 1px color-mix(in srgb, var(--color-white) 3%, transparent);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cyber-card:hover {
+  border-color: color-mix(in srgb, var(--color-pink-500) 70%, transparent);
+  box-shadow: 
+    0 15px 40px color-mix(in srgb, var(--color-pink-500) 15%, transparent),
+    0 0 15px color-mix(in srgb, var(--color-pink-500) 30%, transparent),
+    inset 0 1px 1px color-mix(in srgb, var(--color-white) 5%, transparent);
+}
+
+/* Arcade Push-button glow wrapper */
+.arcade-btn-pulse {
+  animation: arcade-pulse 1.5s infinite;
+}
+
+@keyframes arcade-pulse {
+  0% { box-shadow: 0 0 0 0px color-mix(in srgb, var(--color-pink-500) 70%, transparent); }
+  70% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-pink-500) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0px color-mix(in srgb, var(--color-pink-500) 0%, transparent); }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-midnight);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-purple-500) 30%, transparent);
+  border-radius: 9999px;
+  border: 2px solid var(--color-midnight);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-pink-500) 60%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-pink-500) 50%, transparent);
 }
