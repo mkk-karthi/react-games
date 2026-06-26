@@ -1,71 +1,61 @@
-Act as senior devops
-
-
-```
 #!/bin/bash
 
-# Exit on error
+# Exit immediately on error
 set -e
 
-# Prepare temp folder
-rm -rf temp-deploy
-mkdir temp-deploy
+DEPLOY_DIR="temp-deploy"
+SKIP_PROJECTS=("temp-deploy" "rock-paper-scissors")
 
-# Build each project
+# Clean and prepare staging directory
+rm -rf "$DEPLOY_DIR"
+mkdir "$DEPLOY_DIR"
+
+# Build all React projects, skipping excluded ones
 for dir in */; do
-  project=${dir%/}
-  if [ "$project" = "temp-deploy" ] || [ "$project" = "rock-paper-scissors" ]; then
-    continue
-  fi
+  project="${dir%/}"
 
-  echo "Building $project..."
-  cd $project
-  npm install
+  # Skip excluded projects
+  [[ " ${SKIP_PROJECTS[*]} " =~ " $project " ]] && continue
+
+  echo "🔨 Building $project..."
+  cd "$project"
+  npm install --silent
   npm run build
   cd ..
 
+  # home-page deploys to root; others go into named subdirectories
   if [ "$project" = "home-page" ]; then
-    cp -r "$project/dist/." "temp-deploy/"
+    cp -r "$project/dist/." "$DEPLOY_DIR/"
   elif [ -d "$project/build" ]; then
-    cp -r "$project/build" "temp-deploy/$project"
+    cp -r "$project/build" "$DEPLOY_DIR/$project"
   else
-    cp -r "$project/dist" "temp-deploy/$project"
+    cp -r "$project/dist" "$DEPLOY_DIR/$project"
   fi
 done
 
-# Save local changes
+# Stash uncommitted changes to avoid conflicts during branch switch
 git stash --include-untracked
 
-# Switch to gh-pages branch (create if not exists)
+# Switch to gh-pages branch, creating an orphan branch if it doesn't exist
 if git show-ref --verify --quiet refs/heads/gh-pages; then
   git checkout gh-pages
 else
   git checkout --orphan gh-pages
 fi
 
-# Remove old files
-# git rm -rf . >/dev/null 2>&1 || true
+# Deploy built artifacts to branch root
+cp -r "$DEPLOY_DIR"/. .
 
-# Copy new builds
-cp -r temp-deploy/* .
-
-# Commit and push
+# Commit and force-push to publish
 git add .
 git commit -m "Deploy projects"
-git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY.git" gh-pages
+git push -f origin gh-pages
 
-# Switch back to main
+# Return to main and restore stashed changes
 git checkout main
-
-# Restore local changes
 git stash pop || true
 
-# Cleanup
-rm -rf temp-deploy
+# Remove staging directory
+rm -rf "$DEPLOY_DIR"
 
 echo "✅ Deployment complete!"
-```
-
-Optimize in this sh comments
-This is multi react projects build and push git gh-page barnch
-return sh commend only
