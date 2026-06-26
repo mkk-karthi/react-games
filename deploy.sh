@@ -48,9 +48,6 @@ if [ -f CNAME ]; then
   cp CNAME /tmp/CNAME.bak
 fi
 
-# Remove all files except CNAME
-git ls-files | grep -v "^CNAME$" | xargs git rm -f >/dev/null 2>&1 || true
-
 # Deploy built artifacts to branch root
 cp -r "$DEPLOY_DIR"/. .
 
