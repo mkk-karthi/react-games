@@ -211,7 +211,7 @@ export default function App() {
         className="relative z-10 mx-auto px-4 md:px-8 py-8 max-w-dvw w-full flex flex-col gap-10"
       >
         {/* Header & Hero */}
-        <section className="relative p-4 md:p-6 overflow-hidden flex flex-col gap-8  ">
+        <section className="relative p-4 overflow-hidden flex flex-col gap-8  ">
           {/* Decorative floating outline symbols */}
           <div className="absolute top-20 left-8 text-pink-500/20 text-3xl font-black select-none pointer-events-none animate-float-slow">
             ▲
@@ -435,9 +435,9 @@ export default function App() {
         )}
 
         {/* Footer */}
-        <footer className="mt-8 border-t border-purple-500/20 pt-8 pb-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/45 font-mono uppercase tracking-widest">
+        <footer className="mt-8 border-t border-purple-500/20 py-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/45 font-mono uppercase tracking-widest">
           <div>
-            <span>© {new Date().getFullYear()} MKK Games. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} MKK Creation. All rights reserved.</span>
           </div>
         </footer>
       </motion.main>
