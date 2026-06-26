@@ -211,7 +211,7 @@ function App() {
 
   useEffect(() => {
     restart();
-  }, [mode]);
+  }, [mode, restart]);
 
   useEffect(() => {
     const winner = checkWinner(boardData);
