@@ -52,7 +52,7 @@ fi
 git ls-files | grep -v "^CNAME$" | xargs git rm -f >/dev/null 2>&1 || true
 
 # Deploy built artifacts to branch root
-cp -r "$DEPLOY_DIR"/. .
+cp -r "$DEPLOY_DIR/." .
 
 # Restore CNAME file
 if [ -f "$DEPLOY_DIR/CNAME.bak" ]; then
