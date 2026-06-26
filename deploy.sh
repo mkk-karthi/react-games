@@ -39,12 +39,23 @@ git stash --include-untracked
 # Switch to gh-pages branch, creating an orphan branch if it doesn't exist
 if git show-ref --verify --quiet refs/heads/gh-pages; then
   git checkout gh-pages
+  # Preserve CNAME file if it exists
+  [ -f CNAME ] && cp CNAME CNAME.bak
 else
   git checkout --orphan gh-pages
 fi
 
+# Remove old build files (excluding CNAME)
+git rm -rf . >/dev/null 2>&1 || true
+
 # Deploy built artifacts to branch root
 cp -r "$DEPLOY_DIR"/. .
+
+# Restore CNAME if it was backed up
+if [ -f CNAME.bak ]; then
+  mv CNAME.bak CNAME
+  git add CNAME
+fi
 
 # Commit and force-push to publish
 git add .
