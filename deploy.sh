@@ -3,8 +3,8 @@
 # Exit immediately on error
 set -e
 
-DEPLOY_DIR="tmp"
-SKIP_PROJECTS=($DEPLOY_DIR "rock-paper-scissors")
+DEPLOY_DIR="temp-deploy"
+SKIP_PROJECTS=("temp-deploy" "rock-paper-scissors")
 
 # Clean and prepare staging directory
 rm -rf "$DEPLOY_DIR"
@@ -24,10 +24,10 @@ for dir in */; do
   cd ..
 
   # home-page deploys to root; others go into named subdirectories
-  if [ -d "$project/build" ]; then
-    cp -r "$project/build" "$DEPLOY_DIR/$project"
-  elif [ "$project" = "home-page" ]; then
+  if [ "$project" = "home-page" ]; then
     cp -r "$project/dist/." "$DEPLOY_DIR/"
+  elif [ -d "$project/build" ]; then
+    cp -r "$project/build" "$DEPLOY_DIR/$project"
   else
     cp -r "$project/dist" "$DEPLOY_DIR/$project"
   fi
@@ -45,26 +45,26 @@ fi
 
 # Backup CNAME from gh-pages branch
 if [ -f CNAME ]; then
-  cp CNAME "$DEPLOY_DIR/CNAME.bak"
+  cp CNAME /tmp/CNAME.bak
 fi
 
 # Remove all files except CNAME
-# git ls-files | grep -v "^CNAME$" | xargs git rm -f >/dev/null 2>&1 || true
+git ls-files | grep -v "^CNAME$" | xargs git rm -f >/dev/null 2>&1 || true
 
 # Deploy built artifacts to branch root
-cp -r "$DEPLOY_DIR/." .
+cp -r "$DEPLOY_DIR"/. .
 
 # Restore CNAME file
-if [ -f "$DEPLOY_DIR/CNAME.bak" ]; then
-  cp "$DEPLOY_DIR/CNAME.bak" CNAME
+if [ -f /tmp/CNAME.bak ]; then
+  cp /tmp/CNAME.bak CNAME
   git add CNAME
-  rm "$DEPLOY_DIR/CNAME.bak"
+  rm /tmp/CNAME.bak
 fi
 
 # Commit and force-push to publish
 git add .
 git commit -m "Deploy projects"
-git push -f origin gh-pages
+git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY.git" gh-pages
 
 # Return to main and restore stashed changes
 git checkout main
