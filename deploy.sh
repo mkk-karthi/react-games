@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Exit immediately on error
+# Exit on error
 set -e
 
 DEPLOY_DIR="temp-deploy"
@@ -10,33 +10,29 @@ SKIP_PROJECTS=("temp-deploy" "rock-paper-scissors")
 rm -rf "$DEPLOY_DIR"
 mkdir "$DEPLOY_DIR"
 
-# Build all React projects, skipping excluded ones
+# Build each project
 for dir in */; do
-  project="${dir%/}"
+  project=${dir%/}
 
   # Skip excluded projects
   [[ " ${SKIP_PROJECTS[*]} " =~ " $project " ]] && continue
 
-  echo "🔨 Building $project..."
+  echo "Building $project..."
   cd "$project"
   npm install --silent
   npm run build
   cd ..
 
-  # home-page deploys to root; others go into named subdirectories
-  if [ "$project" = "home-page" ]; then
-    cp -r "$project/dist/." "$DEPLOY_DIR/"
-  elif [ -d "$project/build" ]; then
+  if [ -d "$project/build" ]; then
     cp -r "$project/build" "$DEPLOY_DIR/$project"
+  elif [ "$project" = "home-page" ]; then
+    cp -r "$project/dist/." "$DEPLOY_DIR/"
   else
     cp -r "$project/dist" "$DEPLOY_DIR/$project"
   fi
 done
 
-# Stash uncommitted changes to avoid conflicts during branch switch
-git stash --include-untracked
-
-# Switch to gh-pages branch, creating an orphan branch if it doesn't exist
+# Switch to gh-pages branch (create if not exists)
 if git show-ref --verify --quiet refs/heads/gh-pages; then
   git checkout gh-pages
 else
@@ -45,29 +41,18 @@ fi
 
 # Backup CNAME from gh-pages branch
 if [ -f CNAME ]; then
-  cp CNAME /tmp/CNAME.bak
+  cp CNAME "$DEPLOY_DIR/CNAME"
 fi
 
-# Deploy built artifacts to branch root
+# Copy new builds
 cp -r "$DEPLOY_DIR"/. .
 
-# Restore CNAME file
-if [ -f /tmp/CNAME.bak ]; then
-  cp /tmp/CNAME.bak CNAME
-  git add CNAME
-  rm /tmp/CNAME.bak
-fi
-
-# Commit and force-push to publish
+# Commit and push
 git add .
 git commit -m "Deploy projects"
-git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY.git" gh-pages
+git push -f origin gh-pages
 
-# Return to main and restore stashed changes
-git checkout main
-git stash pop || true
-
-# Remove staging directory
-rm -rf "$DEPLOY_DIR"
+# Cleanup
+rm -rf temp-deploy
 
 echo "✅ Deployment complete!"
