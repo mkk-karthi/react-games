@@ -24,10 +24,10 @@ for dir in */; do
   cd ..
 
   # home-page deploys to root; others go into named subdirectories
-  if [ "$project" = "home-page" ]; then
-    cp -r "$project/dist/." "$DEPLOY_DIR/"
-  elif [ -d "$project/build" ]; then
+  if [ -d "$project/build" ]; then
     cp -r "$project/build" "$DEPLOY_DIR/$project"
+  elif [ "$project" = "home-page" ]; then
+    cp -r "$project/dist/." "$DEPLOY_DIR/"
   else
     cp -r "$project/dist" "$DEPLOY_DIR/$project"
   fi
@@ -49,7 +49,7 @@ if [ -f CNAME ]; then
 fi
 
 # Remove all files except CNAME
-git ls-files | grep -v "^CNAME$" | xargs git rm -f >/dev/null 2>&1 || true
+# git ls-files | grep -v "^CNAME$" | xargs git rm -f >/dev/null 2>&1 || true
 
 # Deploy built artifacts to branch root
 cp -r "$DEPLOY_DIR/." .
