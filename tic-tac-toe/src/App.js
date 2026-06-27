@@ -46,6 +46,9 @@ const winningPatterns = [
   ],
 ];
 
+const createInitialBoard = (size = 3) =>
+  Array.from({ length: size }, () => Array(size).fill(null));
+
 function App() {
   const noRows = 3;
   const modes = [
@@ -62,9 +65,8 @@ function App() {
       value: 2,
     },
   ];
-  const initialData = [...Array(noRows).keys()].map(() => [...Array(noRows).fill(null)]);
   const [tern, setTern] = useState(0); // 0-user, 1-computer
-  const [boardData, setBoardData] = useState(initialData); // 0-O, 1-X
+  const [boardData, setBoardData] = useState(() => createInitialBoard(noRows)); // 0-O, 1-X
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
   const [mode, setMode] = useState(0);
@@ -204,10 +206,10 @@ function App() {
   const restart = useCallback(() => {
     setWinner(null);
     setGameOver(false);
-    setBoardData(initialData);
+    setBoardData(createInitialBoard(noRows));
     setTern(0);
     setHistory([]);
-  }, [initialData]);
+  }, [noRows]);
 
   useEffect(() => {
     restart();

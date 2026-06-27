@@ -6,16 +6,16 @@ import BackgroundEffects from "./components/BackgroundEffects";
 import GameCard from "./components/GameCard";
 
 // Game Thumbnail Imports
-import ticTacToe from "./assets/tic-tac-toe.png";
-import memoryMatching from "./assets/memory-cards-matching.png";
-import snakeGame from "./assets/snake-game.jpg";
-import TwoZeroFourEightGame from "./assets/2048-game.jpg";
-import puzzleTetris from "./assets/puzzle-tetris.png";
-import blockBreaker from "./assets/block-breaker.jpg";
-import candyCrush from "./assets/candy-crush.jpg";
-import flappyBird from "./assets/flappy-bird.png";
-import bullseyeArchery from "./assets/bullseye-archery.png";
-import chess from "./assets/chess.png";
+import ticTacToe from "./assets/tic-tac-toe.webp";
+import memoryMatching from "./assets/memory-cards-matching.webp";
+import snakeGame from "./assets/snake-game.webp";
+import TwoZeroFourEightGame from "./assets/2048-game.webp";
+import puzzleTetris from "./assets/puzzle-tetris.webp";
+import blockBreaker from "./assets/block-breaker.webp";
+import candyCrush from "./assets/candy-crush.webp";
+import flappyBird from "./assets/flappy-bird.webp";
+import bullseyeArchery from "./assets/bullseye-archery.webp";
+import chess from "./assets/chess.webp";
 
 interface Game {
   id: string;
