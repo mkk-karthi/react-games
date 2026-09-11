@@ -1,0 +1,8 @@
+*/build
+*/dist
+*/.vite
+*/node_modules
+*/coverage
+/temp-deploy
+
+.DS_Store
