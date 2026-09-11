@@ -56,6 +56,8 @@ git rm -rf . >/dev/null 2>&1 || true
 # Copy ONLY built files
 cp -r "$DEPLOY_DIR"/. .
 
+echo "games.mkkcreation.com" > CNAME
+
 # Commit and force-push to publish
 git add .
 git commit -m "Deploy projects"
