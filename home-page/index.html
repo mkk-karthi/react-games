@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Primary Meta Tags -->
     <title>MKK Games Universe - Play Free Retro Browser Games</title>
     <meta name="title" content="MKK Games Universe - Play Free Retro Browser Games" />
@@ -12,6 +12,13 @@
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
     <meta name="author" content="Karthikeyan M" />
+
+    <!-- Theme & PWA -->
+    <meta name="theme-color" content="#05081A" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="MKK Games" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://games.mkkcreation.com/" />
@@ -22,14 +29,19 @@
     <meta property="og:title" content="MKK Games Universe - Play Free Retro Browser Games" />
     <meta property="og:description" content="Step into the MKK Games Universe. Play premium, retro-futuristic browser games including Chess, Snake, Tetris, 2048, and Candy Match instantly with no downloads." />
     <meta property="og:image" content="https://games.mkkcreation.com/thumb.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MKK Games Universe — Play Free Retro Browser Games" />
     <meta property="og:site_name" content="MKK Games Universe" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://games.mkkcreation.com/" />
-    <meta property="twitter:title" content="MKK Games Universe - Play Free Retro Browser Games" />
-    <meta property="twitter:description" content="Step into the MKK Games Universe. Play premium, retro-futuristic browser games including Chess, Snake, Tetris, 2048, and Candy Match instantly with no downloads." />
-    <meta property="twitter:image" content="https://games.mkkcreation.com/thumb.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://games.mkkcreation.com/" />
+    <meta name="twitter:title" content="MKK Games Universe - Play Free Retro Browser Games" />
+    <meta name="twitter:description" content="Step into the MKK Games Universe. Play premium, retro-futuristic browser games including Chess, Snake, Tetris, 2048, and Candy Match instantly with no downloads." />
+    <meta name="twitter:image" content="https://games.mkkcreation.com/thumb.png" />
+    <meta name="twitter:image:alt" content="MKK Games Universe — Play Free Retro Browser Games" />
 
     <!-- Icons & Manifest -->
     <link rel="icon" href="favicon.ico" sizes="32x32" />
@@ -37,25 +49,153 @@
     <link rel="apple-touch-icon" href="android-chrome-192x192.svg" />
     <link rel="manifest" href="manifest.json" />
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD): WebSite + ItemList of games -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "MKK Games Universe",
-        "url": "https://games.mkkcreation.com/",
-        "description": "Step into the MKK Games Universe. Play premium, retro-futuristic browser games including Chess, Snake, Tetris, 2048, and Candy Match instantly with no downloads.",
-        "inLanguage": "en",
-        "publisher": {
-          "@type": "Person",
-          "name": "Karthikeyan M",
-          "url": "https://mkkcreation.com"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://games.mkkcreation.com/?search={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://games.mkkcreation.com/#website",
+            "name": "MKK Games Universe",
+            "url": "https://games.mkkcreation.com/",
+            "description": "Step into the MKK Games Universe. Play premium, retro-futuristic browser games including Chess, Snake, Tetris, 2048, and Candy Match instantly with no downloads.",
+            "inLanguage": "en",
+            "publisher": {
+              "@type": "Person",
+              "name": "Karthikeyan M",
+              "url": "https://mkkcreation.com"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://games.mkkcreation.com/?search={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://games.mkkcreation.com/#gamecatalog",
+            "name": "MKK Games Catalog",
+            "description": "A curated collection of free retro-futuristic browser games.",
+            "url": "https://games.mkkcreation.com/",
+            "numberOfItems": 10,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Game",
+                  "name": "Tic Tac Toe",
+                  "url": "https://games.mkkcreation.com/tic-tac-toe",
+                  "description": "The classic grid battle of Xs and Os. Double-cross your opponent and claim the grid.",
+                  "genre": "Classic"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "Game",
+                  "name": "Memory Match",
+                  "url": "https://games.mkkcreation.com/memory-cards-matching",
+                  "description": "Match retro symbol cards to clean the board. Train your memory in speed runs.",
+                  "genre": "Puzzle"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "Game",
+                  "name": "Snake",
+                  "url": "https://games.mkkcreation.com/snake-game",
+                  "description": "Consume pixel bits, grow your digital tail, and survive a high-speed boundary crash.",
+                  "genre": "Arcade"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "Game",
+                  "name": "2048",
+                  "url": "https://games.mkkcreation.com/2048-game",
+                  "description": "Combine matching numbers to form the legendary 2048 tile. Pure mathematical strategy.",
+                  "genre": "Strategy"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "Game",
+                  "name": "Puzzle (Tetris)",
+                  "url": "https://games.mkkcreation.com/puzzle-tetris",
+                  "description": "Align dropping bricks to clean layers. Classic speed drop block stacking.",
+                  "genre": "Puzzle"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "Game",
+                  "name": "Block Breaker",
+                  "url": "https://games.mkkcreation.com/block-breaker",
+                  "description": "Reflect the ball and break grid structures. Capture drop power-ups to blast bricks.",
+                  "genre": "Arcade"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                  "@type": "Game",
+                  "name": "Candy Crush",
+                  "url": "https://games.mkkcreation.com/candy-crush",
+                  "description": "Match rows of colorful candy sweets to generate score multipliers and clear levels.",
+                  "genre": "Puzzle"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                  "@type": "Game",
+                  "name": "Flappy Bird",
+                  "url": "https://games.mkkcreation.com/flappy-bird",
+                  "description": "Bounce through gap hazards in this reflex-demanding high-speed flapping test.",
+                  "genre": "Arcade"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                  "@type": "Game",
+                  "name": "Bullseye Archery",
+                  "url": "https://games.mkkcreation.com/bullseye-archery",
+                  "description": "Pull, aim, adjust for wind direction, and launch your arrows directly into the bullseye.",
+                  "genre": "Action"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "item": {
+                  "@type": "Game",
+                  "name": "Chess",
+                  "url": "https://games.mkkcreation.com/chess",
+                  "description": "The ultimate command board. Devise checkmate tactics and capture opposing pieces.",
+                  "genre": "Strategy"
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
@@ -63,5 +203,5 @@
     <div id="root"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script type="module" src="/src/main.tsx"></script>
-  </head>
+  </body>
 </html>

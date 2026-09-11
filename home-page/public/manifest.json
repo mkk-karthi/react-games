@@ -1,6 +1,8 @@
 {
   "short_name": "MKK Games",
-  "name": "MKK Games",
+  "name": "MKK Games Universe",
+  "description": "Play premium, retro-futuristic browser games including Chess, Snake, Tetris, 2048, and more. No downloads needed.",
+  "categories": ["games", "entertainment"],
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +12,21 @@
     {
       "src": "android-chrome-192x192.svg",
       "type": "image/svg+xml",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "android-chrome-512x512.svg",
       "type": "image/svg+xml",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#05081A",
+  "background_color": "#05081A",
+  "lang": "en"
 }
