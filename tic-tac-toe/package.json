@@ -32,7 +32,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://games.mkkcreation.com/tic-tac-toe",
+  "homepage": "https://games.mkkcreation.com/tic-tac-toe/",
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "react-scripts": "^5.0.1"

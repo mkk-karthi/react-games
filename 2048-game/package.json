@@ -1,5 +1,6 @@
 {
   "name": "2048-game",
+  "homepage": "https://games.mkkcreation.com/2048-game/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

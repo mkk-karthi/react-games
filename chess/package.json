@@ -1,4 +1,6 @@
 {
+  "name": "woodland-chess",
+  "homepage": "https://games.mkkcreation.com/chess/",
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 3000",
