@@ -3,7 +3,7 @@
 A collection of fun and interactive browser games built with **React**, **TypeScript**, and **Tailwind CSS**.  
 All games are maintained together in a **monorepo-style structure** — each game operates as an independent project folder.
 
-🌐 **Live Demo Portal:** [React Games Universe](https://games.mkkcreation.com/)
+🌐 **Live Demo Portal:** [React Games Universe](https://games.mkkcreation.com)
 
 ---
 
@@ -60,17 +60,20 @@ react-games/
 ## 📌 How to Run Locally
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/mkk-karthi/react-games.git
    cd react-games
    ```
 
 2. **Navigate to a specific game folder:**
+
    ```bash
    cd chess  # Or any other game directory
    ```
 
 3. **Install dependencies and start dev server:**
+
    ```bash
    npm install
    npm run dev    # Or npm start (for CRA projects)
