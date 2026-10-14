@@ -91,6 +91,7 @@ export default function App() {
     mainCategories,
     otherCategories,
     handleSearchChange,
+    handleClearSearch,
     handleCategorySelect,
     handleCategoryDropdownChange,
     resetFilters,
@@ -136,6 +137,7 @@ export default function App() {
         <FeaturedSpotlight onPlay={handlePlayGame} />
 
         {/* All Cabinets Grid Catalog (1:1 Aspect Ratio cards) */}
+        <div id="gamecatalog" className="scroll-mt-6" />
         <section
           id="catalog-grid"
           className="flex flex-col gap-6 scroll-mt-6"
@@ -215,7 +217,7 @@ export default function App() {
               />
               {searchQuery && (
                 <button
-                  onClick={resetFilters}
+                  onClick={handleClearSearch}
                   aria-label="Clear search"
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-pink-400 hover:text-white transition-colors cursor-pointer p-0.5"
                 >
