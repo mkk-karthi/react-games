@@ -1,0 +1,8 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+# Disallow internal search query parameter URLs to prevent duplicate crawl
+Disallow: /*?search=*
+Disallow: /*?*search=*
+
+Sitemap: https://games.mkkcreation.com/sitemap.xml
